@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .welcome-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        .welcome-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-title {
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .welcome-subtitle {
+            color: #3949ab;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            background-color: #3949ab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background-color: #1a237e;
+        }
+
+        /* Estilos para o ranking */
+        .ranking-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ranking-title {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Estilos para o pódio - Ajustado para responsividade */
+        .podium-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            height: 160px;
+            overflow: visible;
+        }
+
+        .podium-item {
+            text-align: center;
+            position: relative;
+            margin: 0 5px;
+        }
+
+        .podium-base {
+            width: 100px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px 8px;
+        }
+
+        .podium-second .podium-base {
+            height: 100px;
+            background-color: #C0C0C0;
+        }
+
+        .podium-first .podium-base {
+            height: 130px;
+            background-color: #FFD700;
+        }
+
+        .podium-third .podium-base {
+            height: 70px;
+            background-color: #CD7F32;
+        }
+
+        .podium-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .podium-name {
+            font-weight: bold;
+            color: white;
+            font-size: 12px;
+            margin-bottom: 5px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .podium-score {
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Estilos para a tabela de classificação */
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px auto 0;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        .ranking-table th,
+        .ranking-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .ranking-table th {
+            background-color: #3949ab;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .ranking-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .ranking-table tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        .ranking-position {
+            font-weight: bold;
+            width: 50px;
+            text-align: center;
+        }
+
+        .ranking-name {
+            font-weight: 500;
+        }
+
+        .ranking-score {
+            font-weight: bold;
+            color: #1a237e;
+            text-align: right;
+        }
+
+        /* Destaque para os três primeiros na tabela */
+        .ranking-table tbody tr:nth-child(1) .ranking-position {
+            background-color: #FFD700;
+            color: #333;
+            border-radius: 4px;
+        }
+
+        .ranking-table tbody tr:nth-child(2) .ranking-position {
+            background-color: #C0C0C0;
+            color: #333;
+            border-radius: 4px;
+        }
+
+        .ranking-table tbody tr:nth-child(3) .ranking-position {
+            background-color: #CD7F32;
+            color: #333;
+            border-radius: 4px;
+        }
+
+        /* Estilos para os indicadores de meta - Layout responsivo melhorado */
+        .indicators-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .indicator-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .indicator-title {
+            color: #1a237e;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .indicator-values {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .indicator-item {
+            text-align: center;
+        }
+
+        .indicator-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .indicator-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .indicator-difference {
+            margin-top: 8px;
+            padding: 6px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .indicator-difference.positive {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .indicator-difference.negative {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        /* Estilos para destaques da semana */
+        .highlights-list {
+            text-align: left;
+        }
+
+        .highlight-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 6px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            border-left: 4px solid #3949ab;
+        }
+
+        .highlight-name {
+            font-weight: 500;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .highlight-achievement {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .highlight-score {
+            font-weight: bold;
+            color: #1a237e;
+            font-size: 14px;
+        }
+
+        /* Responsividade aprimorada */
+        @media (max-width: 1024px) {
+            .welcome-container {
+                max-width: 100%;
+                padding: 12px;
+            }
+
+            .indicators-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .welcome-container {
+                padding: 8px;
+            }
+
+            .welcome-card,
+            .ranking-card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .welcome-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-subtitle {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .ranking-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .podium-container {
+                height: 140px;
+                margin-bottom: 20px;
+            }
+
+            .podium-base {
+                width: 85px;
+                padding: 8px 6px;
+            }
+
+            .podium-second .podium-base {
+                height: 85px;
+            }
+
+            .podium-first .podium-base {
+                height: 110px;
+            }
+
+            .podium-third .podium-base {
+                height: 60px;
+            }
+
+            .podium-number {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .podium-name {
+                font-size: 11px;
+            }
+
+            .podium-score {
+                font-size: 14px;
+            }
+
+            .indicators-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .indicator-card {
+                padding: 12px;
+            }
+
+            .indicator-title {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .indicator-value {
+                font-size: 16px;
+            }
+
+            .ranking-table {
+                font-size: 12px;
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 8px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 22px;
+            }
+
+            .welcome-subtitle {
+                font-size: 16px;
+            }
+
+            .ranking-title {
+                font-size: 18px;
+            }
+
+            .podium-container {
+                height: 120px;
+            }
+
+            .podium-base {
+                width: 75px;
+                padding: 6px 4px;
+            }
+
+            .podium-second .podium-base {
+                height: 75px;
+            }
+
+            .podium-first .podium-base {
+                height: 95px;
+            }
+
+            .podium-third .podium-base {
+                height: 55px;
+            }
+
+            .podium-number {
+                font-size: 16px;
+            }
+
+            .podium-name {
+                font-size: 10px;
+            }
+
+            .podium-score {
+                font-size: 13px;
+            }
+
+            .indicator-title {
+                font-size: 14px;
+            }
+
+            .indicator-value {
+                font-size: 15px;
+            }
+
+            .highlight-name {
+                font-size: 12px;
+            }
+
+            .highlight-score {
+                font-size: 13px;
+            }
+        }
+
+        /* Layout para telas muito grandes */
+        @media (min-width: 1200px) {
+            .indicators-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            .welcome-container {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="welcome-container">
+            <!-- Cartão de boas-vindas simplificado -->
+            <div class="welcome-card">
+                <h1 class="welcome-title">Bem-vindo!</h1>
+                <h2 class="welcome-subtitle" id="welcomeMessage">Carregando...</h2>
+
+                <a href="index.html" class="btn-back">Voltar para Login</a>
+            </div>
+
+            <!-- Cartão de ranking -->
+            <div class="ranking-card">
+                <h2 class="ranking-title">Ranking da Equipe</h2>
+
+                <!-- Pódio para os três primeiros -->
+                <div class="podium-container">
+                    <!-- Segundo lugar -->
+                    <div class="podium-item podium-second">
+                        <div class="podium-base">
+                            <div class="podium-number">2</div>
+                            <div class="podium-name" id="podium-second-name">Jessica</div>
+                            <div class="podium-score" id="podium-second-score">85</div>
+                        </div>
+                    </div>
+
+                    <!-- Primeiro lugar -->
+                    <div class="podium-item podium-first">
+                        <div class="podium-base">
+                            <div class="podium-number">1</div>
+                            <div class="podium-name" id="podium-first-name">Nathalia Dias</div>
+                            <div class="podium-score" id="podium-first-score">92</div>
+                        </div>
+                    </div>
+
+                    <!-- Terceiro lugar -->
+                    <div class="podium-item podium-third">
+                        <div class="podium-base">
+                            <div class="podium-number">3</div>
+                            <div class="podium-name" id="podium-third-name">Isabella</div>
+                            <div class="podium-score" id="podium-third-score">78</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de classificação completa -->
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome</th>
+                            <th>Loja</th>
+                            <th>Pontuação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTableBody">
+                        <!-- Os dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Indicadores de Meta - Layout Responsivo Melhorado -->
+            <div class="indicators-container">
+                <!-- Pay (mês) -->
+                <div class="indicator-card">
+                    <div class="indicator-title">Pay (mês)</div>
+                    <div class="indicator-values">
+                        <div class="indicator-item">
+                            <div class="indicator-label">Meta</div>
+                            <div class="indicator-value" id="pay-month-meta">100</div>
+                        </div>
+                        <div class="indicator-item">
+                            <div class="indicator-label">Real</div>
+                            <div class="indicator-value" id="pay-month-real">85</div>
+                        </div>
+                    </div>
+                    <div class="indicator-difference negative" id="pay-month-diff">
+                        Faltam: 15
+                    </div>
+                </div>
+
+                <!-- Pay (semana) -->
+                <div class="indicator-card">
+                    <div class="indicator-title">Pay (semana)</div>
+                    <div class="indicator-values">
+                        <div class="indicator-item">
+                            <div class="indicator-label">Meta</div>
+                            <div class="indicator-value" id="pay-week-meta">25</div>
+                        </div>
+                        <div class="indicator-item">
+                            <div class="indicator-label">Real</div>
+                            <div class="indicator-value" id="pay-week-real">30</div>
+                        </div>
+                    </div>
+                    <div class="indicator-difference positive" id="pay-week-diff">
+                        Saldo: 5
+                    </div>
+                </div>
+
+                <!-- NPS -->
+                <div class="indicator-card">
+                    <div class="indicator-title">NPS</div>
+                    <div class="indicator-values">
+                        <div class="indicator-item">
+                            <div class="indicator-label">Meta</div>
+                            <div class="indicator-value" id="nps-meta">80</div>
+                        </div>
+                        <div class="indicator-item">
+                            <div class="indicator-label">Real</div>
+                            <div class="indicator-value" id="nps-real">75</div>
+                        </div>
+                    </div>
+                    <div class="indicator-difference negative" id="nps-diff">
+                        Faltam: 5
+                    </div>
+                </div>
+
+                <!-- Destaques da ultima semana -->
+                <div class="indicator-card">
+                    <div class="indicator-title">Destaques da ultima semana</div>
+                    <div class="highlights-list">
+                        <div class="highlight-item">
+                            <div>
+                                <div class="highlight-name">Nathalia Dias</div>
+                                <div class="highlight-achievement">Maior vendedor</div>
+                            </div>
+                            <div class="highlight-score">15</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div>
+                                <div class="highlight-name">Jessica</div>
+                                <div class="highlight-achievement">Melhor atendimento</div>
+                            </div>
+                            <div class="highlight-score">12</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div>
+                                <div class="highlight-name">Isabella</div>
+                                <div class="highlight-achievement">Meta superada</div>
+                            </div>
+                            <div class="highlight-score">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados de exemplo para o ranking
+        const teamMembers = [
+            { position: 1, name: 'Nathalia Dias', store: 'Loja Central', score: 92 },
+            { position: 2, name: 'Jessica', store: 'Loja Norte', score: 85 },
+            { position: 3, name: 'Isabella', store: 'Loja Sul', score: 78 },
+            { position: 4, name: 'Jackeline', store: 'Loja Oeste', score: 72 },
+            { position: 5, name: 'Gabryella', store: 'Loja Leste', score: 68 },
+            { position: 6, name: 'Vanessa', store: 'Loja Central', score: 65 },
+            { position: 7, name: 'Lunana', store: 'Loja Norte', score: 60 },
+            { position: 8, name: 'Natalya Silva', store: 'Loja Sul', score: 55 },
+            { position: 9, name: 'Ruth', store: 'Loja Oeste', score: 50 },
+            { position: 10, name: 'Lorrane', store: 'Loja Leste', score: 45 },
+            { position: 11, name: 'Kaylane', store: 'Loja Central', score: 40 }
+        ];
+
+        // Dados dos indicadores (você pode alterar estes valores)
+        const indicators = {
+            payMonth: { meta: 100, real: 85 },
+            payWeek: { meta: 25, real: 30 },
+            nps: { meta: 80, real: 75 }
+        };
+
+        // Função para calcular e atualizar indicadores
+        function updateIndicators() {
+            // Pay (mês)
+            const payMonthDiff = indicators.payMonth.real - indicators.payMonth.meta;
+            const payMonthElement = document.getElementById('pay-month-diff');
+            if (payMonthDiff >= 0) {
+                payMonthElement.textContent = `Saldo: ${Math.abs(payMonthDiff)}`;
+                payMonthElement.className = 'indicator-difference positive';
+            } else {
+                payMonthElement.textContent = `Faltam: ${Math.abs(payMonthDiff)}`;
+                payMonthElement.className = 'indicator-difference negative';
+            }
+
+            // Pay (semana)
+            const payWeekDiff = indicators.payWeek.real - indicators.payWeek.meta;
+            const payWeekElement = document.getElementById('pay-week-diff');
+            if (payWeekDiff >= 0) {
+                payWeekElement.textContent = `Saldo: ${Math.abs(payWeekDiff)}`;
+                payWeekElement.className = 'indicator-difference positive';
+            } else {
+                payWeekElement.textContent = `Faltam: ${Math.abs(payWeekDiff)}`;
+                payWeekElement.className = 'indicator-difference negative';
+            }
+
+            // NPS
+            const npsDiff = indicators.nps.real - indicators.nps.meta;
+            const npsElement = document.getElementById('nps-diff');
+            if (npsDiff >= 0) {
+                npsElement.textContent = `Saldo: ${Math.abs(npsDiff)}`;
+                npsElement.className = 'indicator-difference positive';
+            } else {
+                npsElement.textContent = `Faltam: ${Math.abs(npsDiff)}`;
+                npsElement.className = 'indicator-difference negative';
+            }
+        }
+
+        // Função para atualizar o pódio com os dados do ranking
+        function updatePodium() {
+            if (teamMembers.length >= 3) {
+                document.getElementById('podium-first-name').textContent = teamMembers[0].name;
+                document.getElementById('podium-first-score').textContent = teamMembers[0].score;
+
+                document.getElementById('podium-second-name').textContent = teamMembers[1].name;
+                document.getElementById('podium-second-score').textContent = teamMembers[1].score;
+
+                document.getElementById('podium-third-name').textContent = teamMembers[2].name;
+                document.getElementById('podium-third-score').textContent = teamMembers[2].score;
+            }
+        }
+
+        // Função para preencher a tabela de ranking
+        function populateRankingTable() {
+            const tableBody = document.getElementById('rankingTableBody');
+
+            // Limpar a tabela antes de preencher
+            tableBody.innerHTML = '';
+
+            // Adicionar cada membro da equipe à tabela
+            teamMembers.forEach(member => {
+                const row = document.createElement('tr');
+
+                // Criar células para cada coluna
+                const positionCell = document.createElement('td');
+                positionCell.className = 'ranking-position';
+                positionCell.textContent = member.position;
+
+                const nameCell = document.createElement('td');
+                nameCell.className = 'ranking-name';
+                nameCell.textContent = member.name;
+
+                const storeCell = document.createElement('td');
+                storeCell.textContent = member.store;
+
+                const scoreCell = document.createElement('td');
+                scoreCell.className = 'ranking-score';
+                scoreCell.textContent = member.score;
+
+                // Adicionar células à linha
+                row.appendChild(positionCell);
+                row.appendChild(nameCell);
+                row.appendChild(storeCell);
+                row.appendChild(scoreCell);
+
+                // Adicionar linha à tabela
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Função para inicializar a página
+        function initPage() {
+            // Verificar se há dados no localStorage
+            const nome = localStorage.getItem('nomeUsuario');
+
+            if (nome) {
+                // Exibir apenas o nome do usuário na mensagem de boas-vindas
+                document.getElementById('welcomeMessage').textContent = `Bem-vindo, ${nome}!`;
+
+                // Atualizar pódio
+                updatePodium();
+
+                // Preencher a tabela de ranking
+                populateRankingTable();
+
+                // Atualizar indicadores
+                updateIndicators();
+            } else {
+                // Redirecionar para a página de login se não houver dados
+                alert('Por favor, faça login primeiro.');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Inicializar a página quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+
+</html>
