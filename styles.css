@@ -52,11 +52,16 @@ input {
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s;
+    min-height: 44px; /* Touch-friendly minimum height */
+    -webkit-appearance: none; /* Remove iOS styling */
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input:focus {
     border-color: #3949ab;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.1);
 }
 
 .btn-login {
@@ -69,10 +74,17 @@ input:focus {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s;
+    min-height: 48px; /* Touch-friendly minimum height */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-login:hover {
+    background-color: #1a237e;
+}
+
+.btn-login:active {
+    transform: translateY(1px);
     background-color: #1a237e;
 }
 

@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Bem-vindo</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -12,10 +13,164 @@
             box-sizing: border-box;
         }
 
+        /* Melhorias de legibilidade e acessibilidade */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Barra de navegação fixa */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 35, 126, 1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 35, 126, 0.8);
+            padding: 10px 0;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .navbar-link:hover,
+        .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar.scrolled .navbar-link {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar.scrolled .navbar-link:hover,
+        .navbar.scrolled .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Barra de navegação fixa */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 35, 126, 1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 35, 126, 0.8);
+            padding: 10px 0;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .navbar-link:hover,
+        .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar.scrolled .navbar-link {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar.scrolled .navbar-link:hover,
+        .navbar.scrolled .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
         body {
             margin: 0;
-            padding: 10px;
+            padding: 80px 10px 10px 10px;
+            /* Top padding for fixed navbar */
             min-height: 100vh;
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+            display: block !important;
+            /* Override styles.css flex layout */
+            align-items: initial !important;
+            justify-content: initial !important;
+            height: auto !important;
         }
 
         .welcome-container {
@@ -23,6 +178,8 @@
             max-width: 1200px;
             padding: 15px;
             margin: 0 auto;
+            box-sizing: border-box;
+            position: relative;
         }
 
         .welcome-card {
@@ -47,20 +204,29 @@
         }
 
         .btn-back {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #3949ab;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.1s;
             text-decoration: none;
             display: inline-block;
+            min-height: 48px;
+            min-width: 120px;
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-back:hover {
+            background-color: #1a237e;
+        }
+
+        .btn-back:active {
+            transform: translateY(1px);
             background-color: #1a237e;
         }
 
@@ -86,9 +252,11 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            margin-bottom: 30px;
+            margin: 20px auto 30px auto;
             height: 160px;
             overflow: visible;
+            width: 100%;
+            max-width: 400px;
         }
 
         .podium-item {
@@ -103,23 +271,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
             padding: 10px 8px;
+            position: relative;
+            justify-content: flex-end;
         }
 
         .podium-second .podium-base {
             height: 100px;
             background-color: #C0C0C0;
+            justify-content: flex-end;
         }
 
         .podium-first .podium-base {
             height: 130px;
             background-color: #FFD700;
+            justify-content: flex-start;
+            padding-top: 15px;
         }
 
         .podium-third .podium-base {
             height: 70px;
             background-color: #CD7F32;
+            justify-content: center;
         }
 
         .podium-number {
@@ -144,11 +317,20 @@
             font-size: 16px;
         }
 
+        /* Container para scroll horizontal da tabela */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
         /* Estilos para a tabela de classificação */
         .ranking-table {
             width: 100%;
+            min-width: 400px;
             border-collapse: collapse;
-            margin: 15px auto 0;
             background-color: #f5f5f5;
             border-radius: 8px;
             overflow: hidden;
@@ -187,9 +369,15 @@
             font-weight: 500;
         }
 
-        .ranking-score {
+        .ranking-pay {
             font-weight: bold;
             color: #1a237e;
+            text-align: right;
+        }
+
+        .ranking-variable {
+            font-weight: bold;
+            color: #3949ab;
             text-align: right;
         }
 
@@ -275,6 +463,43 @@
             color: #c62828;
         }
 
+        /* Estilos específicos para NPS */
+        .nps-period {
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .nps-period-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .nps-status.green {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .nps-status.yellow {
+            background-color: #fff8e1;
+            color: #f57c00;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .nps-status.red {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
         /* Estilos para destaques da semana */
         .highlights-list {
             text-align: left;
@@ -299,7 +524,8 @@
 
         .highlight-achievement {
             font-size: 11px;
-            color: #666;
+            color: #555;
+            /* Melhor contraste */
         }
 
         .highlight-score {
@@ -328,12 +554,14 @@
 
             .welcome-container {
                 padding: 8px;
+                max-width: 100%;
             }
 
             .welcome-card,
             .ranking-card {
                 padding: 15px;
                 margin-bottom: 15px;
+                box-sizing: border-box;
             }
 
             .welcome-title {
@@ -353,7 +581,9 @@
 
             .podium-container {
                 height: 140px;
-                margin-bottom: 20px;
+                margin: 15px auto 20px auto;
+                position: relative;
+                top: 0;
             }
 
             .podium-base {
@@ -429,6 +659,9 @@
 
             .podium-container {
                 height: 120px;
+                margin: 10px auto 15px auto;
+                position: relative;
+                top: 0;
             }
 
             .podium-base {
@@ -477,6 +710,224 @@
             }
         }
 
+        /* Media queries para orientação landscape em dispositivos móveis */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            body {
+                padding: 5px;
+            }
+
+            .welcome-container {
+                padding: 8px;
+            }
+
+            .welcome-card,
+            .ranking-card {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-title {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .welcome-subtitle {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .ranking-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .podium-container {
+                height: 100px;
+                margin: 10px auto 15px auto;
+                position: relative;
+                top: 0;
+            }
+
+            .podium-base {
+                width: 70px;
+                padding: 6px 4px;
+            }
+
+            .podium-second .podium-base {
+                height: 70px;
+            }
+
+            .podium-first .podium-base {
+                height: 85px;
+            }
+
+            .podium-third .podium-base {
+                height: 55px;
+            }
+
+            .indicators-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .indicator-card {
+                padding: 10px;
+            }
+
+            .ranking-table {
+                font-size: 11px;
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 6px 4px;
+            }
+        }
+
+        @media screen and (max-width: 480px) and (orientation: landscape) {
+            .podium-container {
+                height: 80px;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 4px 2px;
+            }
+
+            .podium-second .podium-base {
+                height: 55px;
+            }
+
+            .podium-first .podium-base {
+                height: 70px;
+            }
+
+            .podium-third .podium-base {
+                height: 40px;
+            }
+
+            .indicators-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .indicator-title {
+                font-size: 11px;
+            }
+
+            .indicator-value {
+                font-size: 13px;
+            }
+        }
+
+        /* Media queries para orientação landscape em dispositivos móveis */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            body {
+                padding: 5px;
+            }
+
+            .welcome-container {
+                padding: 8px;
+            }
+
+            .welcome-card,
+            .ranking-card {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-title {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .welcome-subtitle {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .ranking-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .podium-container {
+                height: 100px;
+                margin-bottom: 15px;
+            }
+
+            .podium-base {
+                width: 70px;
+                padding: 6px 4px;
+            }
+
+            .podium-second .podium-base {
+                height: 70px;
+            }
+
+            .podium-first .podium-base {
+                height: 85px;
+            }
+
+            .podium-third .podium-base {
+                height: 55px;
+            }
+
+            .indicators-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .indicator-card {
+                padding: 10px;
+            }
+
+            .ranking-table {
+                font-size: 11px;
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 6px 4px;
+            }
+        }
+
+        @media screen and (max-width: 480px) and (orientation: landscape) {
+            .podium-container {
+                height: 80px;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 4px 2px;
+            }
+
+            .podium-second .podium-base {
+                height: 55px;
+            }
+
+            .podium-first .podium-base {
+                height: 70px;
+            }
+
+            .podium-third .podium-base {
+                height: 40px;
+            }
+
+            .indicators-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .indicator-title {
+                font-size: 11px;
+            }
+
+            .indicator-value {
+                font-size: 13px;
+            }
+        }
+
         /* Layout para telas muito grandes */
         @media (min-width: 1200px) {
             .indicators-container {
@@ -488,10 +939,143 @@
                 max-width: 1400px;
             }
         }
+
+        @media (max-width: 320px) {
+            body {
+                padding: 2px;
+            }
+
+            .welcome-container {
+                padding: 5px;
+            }
+
+            .welcome-card,
+            .ranking-card {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-title {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+
+            .welcome-subtitle {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .ranking-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .podium-container {
+                height: 100px;
+                margin-bottom: 15px;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 4px 2px;
+            }
+
+            .podium-second .podium-base {
+                height: 60px;
+            }
+
+            .podium-first .podium-base {
+                height: 75px;
+            }
+
+            .podium-third .podium-base {
+                height: 45px;
+            }
+
+            .podium-number {
+                font-size: 14px;
+                margin-bottom: 3px;
+            }
+
+            .podium-name {
+                font-size: 8px;
+                line-height: 1.1;
+            }
+
+            .podium-score {
+                font-size: 11px;
+            }
+
+            .indicator-card {
+                padding: 8px;
+            }
+
+            .indicator-title {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .indicator-value {
+                font-size: 14px;
+            }
+
+            .indicator-label {
+                font-size: 9px;
+            }
+
+            .indicator-difference {
+                font-size: 11px;
+                padding: 4px;
+            }
+
+            .ranking-table {
+                font-size: 10px;
+                min-width: 300px;
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 6px 4px;
+            }
+
+            .btn-back {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .highlight-name {
+                font-size: 10px;
+            }
+
+            .highlight-achievement {
+                font-size: 9px;
+            }
+
+            .highlight-score {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Barra de navegação fixa -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="welcome.html" class="navbar-link active">Ranking Equipe</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="ranking-loja.html" class="navbar-link">Ranking Loja</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="icp.html" class="navbar-link">ICP</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="welcome-container">
             <!-- Cartão de boas-vindas simplificado -->
@@ -537,19 +1121,22 @@
                 </div>
 
                 <!-- Tabela de classificação completa -->
-                <table class="ranking-table">
-                    <thead>
-                        <tr>
-                            <th>Posição</th>
-                            <th>Nome</th>
-                            <th>Loja</th>
-                            <th>Pontuação</th>
-                        </tr>
-                    </thead>
-                    <tbody id="rankingTableBody">
-                        <!-- Os dados serão preenchidos via JavaScript -->
-                    </tbody>
-                </table>
+                <div class="table-container">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Loja</th>
+                                <th>Pay</th>
+                                <th>Variável</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingTableBody">
+                            <!-- Os dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Indicadores de Meta - Layout Responsivo Melhorado -->
@@ -557,54 +1144,86 @@
                 <!-- Pay (mês) -->
                 <div class="indicator-card">
                     <div class="indicator-title">Pay (mês)</div>
-                    <div class="indicator-values">
-                        <div class="indicator-item">
+                    <div class="indicator-values-vertical">
+                        <div class="indicator-item-vertical">
                             <div class="indicator-label">Meta</div>
-                            <div class="indicator-value" id="pay-month-meta">100</div>
+                            <div class="indicator-value" id="pay-month-meta">480</div>
                         </div>
-                        <div class="indicator-item">
+                        <div class="indicator-item-vertical">
                             <div class="indicator-label">Real</div>
-                            <div class="indicator-value" id="pay-month-real">85</div>
+                            <div class="indicator-value" id="pay-month-real">370</div>
                         </div>
                     </div>
                     <div class="indicator-difference negative" id="pay-month-diff">
-                        Faltam: 15
+                        Faltam: 110
                     </div>
                 </div>
 
                 <!-- Pay (semana) -->
                 <div class="indicator-card">
                     <div class="indicator-title">Pay (semana)</div>
-                    <div class="indicator-values">
-                        <div class="indicator-item">
+                    <div class="indicator-values-vertical">
+                        <div class="indicator-item-vertical">
                             <div class="indicator-label">Meta</div>
-                            <div class="indicator-value" id="pay-week-meta">25</div>
+                            <div class="indicator-value" id="pay-week-meta">95</div>
                         </div>
-                        <div class="indicator-item">
+                        <div class="indicator-item-vertical">
                             <div class="indicator-label">Real</div>
-                            <div class="indicator-value" id="pay-week-real">30</div>
+                            <div class="indicator-value" id="pay-week-real">15</div>
                         </div>
                     </div>
-                    <div class="indicator-difference positive" id="pay-week-diff">
-                        Saldo: 5
+                    <div class="indicator-difference negative" id="pay-week-diff">
+                        Faltam: 80
                     </div>
                 </div>
 
                 <!-- NPS -->
                 <div class="indicator-card">
                     <div class="indicator-title">NPS</div>
-                    <div class="indicator-values">
-                        <div class="indicator-item">
-                            <div class="indicator-label">Meta</div>
-                            <div class="indicator-value" id="nps-meta">80</div>
-                        </div>
-                        <div class="indicator-item">
-                            <div class="indicator-label">Real</div>
-                            <div class="indicator-value" id="nps-real">75</div>
+
+                    <!-- NPS Semana -->
+                     <div class="nps-period">
+                         <div class="nps-period-title">Semana</div>
+                         <div class="indicator-values">
+                             <div class="indicator-item">
+                                 <div class="indicator-label">Meta</div>
+                                 <div class="indicator-value" id="nps-semana-meta">85%</div>
+                             </div>
+                             <div class="indicator-item">
+                                 <div class="indicator-label">Real</div>
+                                 <div class="indicator-value nps-status" id="nps-semana-real">0%</div>
+                             </div>
+                         </div>
+                     </div>
+
+                    <!-- NPS Mês -->
+                    <div class="nps-period">
+                        <div class="nps-period-title">Mês</div>
+                        <div class="indicator-values">
+                            <div class="indicator-item">
+                                <div class="indicator-label">Meta</div>
+                                <div class="indicator-value" id="nps-mes-meta">85%</div>
+                            </div>
+                            <div class="indicator-item">
+                                 <div class="indicator-label">Real</div>
+                                 <div class="indicator-value nps-status" id="nps-mes-real">60.8%</div>
+                             </div>
                         </div>
                     </div>
-                    <div class="indicator-difference negative" id="nps-diff">
-                        Faltam: 5
+
+                    <!-- NPS Ano -->
+                    <div class="nps-period">
+                        <div class="nps-period-title">Ano</div>
+                        <div class="indicator-values">
+                            <div class="indicator-item">
+                                <div class="indicator-label">Meta</div>
+                                <div class="indicator-value" id="nps-ano-meta">85%</div>
+                            </div>
+                            <div class="indicator-item">
+                                 <div class="indicator-label">Real</div>
+                                 <div class="indicator-value nps-status" id="nps-ano-real">73%</div>
+                             </div>
+                        </div>
                     </div>
                 </div>
 
@@ -641,29 +1260,50 @@
 
     <script>
         // Dados de exemplo para o ranking
-        const teamMembers = [
-            { position: 1, name: 'Nathalia Dias', store: 'Loja Central', score: 92 },
-            { position: 2, name: 'Jessica', store: 'Loja Norte', score: 85 },
-            { position: 3, name: 'Isabella', store: 'Loja Sul', score: 78 },
-            { position: 4, name: 'Jackeline', store: 'Loja Oeste', score: 72 },
-            { position: 5, name: 'Gabryella', store: 'Loja Leste', score: 68 },
-            { position: 6, name: 'Vanessa', store: 'Loja Central', score: 65 },
-            { position: 7, name: 'Lunana', store: 'Loja Norte', score: 60 },
-            { position: 8, name: 'Natalya Silva', store: 'Loja Sul', score: 55 },
-            { position: 9, name: 'Ruth', store: 'Loja Oeste', score: 50 },
-            { position: 10, name: 'Lorrane', store: 'Loja Leste', score: 45 },
-            { position: 11, name: 'Kaylane', store: 'Loja Central', score: 40 }
+        let teamMembers = [
+            { name: 'Nathalia Dias', store: 'alc', pay: 1, variable: 56.600 },
+            { name: 'Jessica', store: 'alc', pay: 0, variable: 45.200 },
+            { name: 'Isabella', store: 'alc', pay: 0, variable: 38.900 },
+            { name: 'Jackeline', store: 'alc', pay: 1, variable: 32.100 },
+            { name: 'Gabryella', store: 'alc', pay: 0, variable: 28.750 },
+            { name: 'Vanessa', store: 'alc', pay: 0, variable: 25.300 },
+            { name: 'Lunana', store: 'alc', pay: 3, variable: 22.800 },
+            { name: 'Natalya Silva', store: 'alc', pay: 4, variable: 19.500 },
+            { name: 'Ruth', store: 'alc', pay: 0, variable: 16.200 },
+            { name: 'Lorrane', store: 'alc', pay: 1, variable: 13.900 },
+            { name: 'Kaylane', store: 'alc', pay: 2, variable: 11.600 }
         ];
 
         // Dados dos indicadores (você pode alterar estes valores)
         const indicators = {
-            payMonth: { meta: 100, real: 85 },
-            payWeek: { meta: 25, real: 30 },
-            nps: { meta: 80, real: 75 }
+            payMonth: { meta: 480, real: 370 },
+            payWeek: { meta: 95, real: 15 },
+            nps: {
+                semana: { meta: 85, real: 0 },
+                mes: { meta: 85, real: 60.8 },
+                ano: { meta: 85, real: 73 }
+            }
         };
+
+        // Função para determinar a cor do NPS baseada na porcentagem
+        function getNpsStatusClass(percentage) {
+            if (percentage >= 85) {
+                return 'green';
+            } else if (percentage >= 75) {
+                return 'yellow';
+            } else {
+                return 'red';
+            }
+        }
 
         // Função para calcular e atualizar indicadores
         function updateIndicators() {
+            // Atualizar valores dos elementos
+            document.getElementById('pay-month-meta').textContent = indicators.payMonth.meta;
+            document.getElementById('pay-month-real').textContent = indicators.payMonth.real;
+            document.getElementById('pay-week-meta').textContent = indicators.payWeek.meta;
+            document.getElementById('pay-week-real').textContent = indicators.payWeek.real;
+
             // Pay (mês)
             const payMonthDiff = indicators.payMonth.real - indicators.payMonth.meta;
             const payMonthElement = document.getElementById('pay-month-diff');
@@ -686,29 +1326,46 @@
                 payWeekElement.className = 'indicator-difference negative';
             }
 
-            // NPS
-            const npsDiff = indicators.nps.real - indicators.nps.meta;
-            const npsElement = document.getElementById('nps-diff');
-            if (npsDiff >= 0) {
-                npsElement.textContent = `Saldo: ${Math.abs(npsDiff)}`;
-                npsElement.className = 'indicator-difference positive';
-            } else {
-                npsElement.textContent = `Faltam: ${Math.abs(npsDiff)}`;
-                npsElement.className = 'indicator-difference negative';
-            }
+            // NPS - Atualizar valores e cores
+             // Semana
+             document.getElementById('nps-semana-meta').textContent = `${indicators.nps.semana.meta}%`;
+             const npsSemanaReal = document.getElementById('nps-semana-real');
+             npsSemanaReal.textContent = `${indicators.nps.semana.real}%`;
+             npsSemanaReal.className = `indicator-value nps-status ${getNpsStatusClass(indicators.nps.semana.real)}`;
+
+            // Mês
+            document.getElementById('nps-mes-meta').textContent = `${indicators.nps.mes.meta}%`;
+            const npsMesReal = document.getElementById('nps-mes-real');
+            npsMesReal.textContent = `${indicators.nps.mes.real}%`;
+            npsMesReal.className = `indicator-value nps-status ${getNpsStatusClass(indicators.nps.mes.real)}`;
+
+            // Ano
+            document.getElementById('nps-ano-meta').textContent = `${indicators.nps.ano.meta}%`;
+            const npsAnoReal = document.getElementById('nps-ano-real');
+            npsAnoReal.textContent = `${indicators.nps.ano.real}%`;
+            npsAnoReal.className = `indicator-value nps-status ${getNpsStatusClass(indicators.nps.ano.real)}`;
+        }
+
+        // Função para ordenar membros da equipe por pay (do maior para o menor)
+        function sortTeamMembersByPay() {
+            teamMembers.sort((a, b) => b.pay - a.pay);
+            // Atualizar posições após ordenação
+            teamMembers.forEach((member, index) => {
+                member.position = index + 1;
+            });
         }
 
         // Função para atualizar o pódio com os dados do ranking
         function updatePodium() {
             if (teamMembers.length >= 3) {
                 document.getElementById('podium-first-name').textContent = teamMembers[0].name;
-                document.getElementById('podium-first-score').textContent = teamMembers[0].score;
+                document.getElementById('podium-first-score').textContent = teamMembers[0].pay;
 
                 document.getElementById('podium-second-name').textContent = teamMembers[1].name;
-                document.getElementById('podium-second-score').textContent = teamMembers[1].score;
+                document.getElementById('podium-second-score').textContent = teamMembers[1].pay;
 
                 document.getElementById('podium-third-name').textContent = teamMembers[2].name;
-                document.getElementById('podium-third-score').textContent = teamMembers[2].score;
+                document.getElementById('podium-third-score').textContent = teamMembers[2].pay;
             }
         }
 
@@ -735,15 +1392,20 @@
                 const storeCell = document.createElement('td');
                 storeCell.textContent = member.store;
 
-                const scoreCell = document.createElement('td');
-                scoreCell.className = 'ranking-score';
-                scoreCell.textContent = member.score;
+                const payCell = document.createElement('td');
+                payCell.className = 'ranking-pay';
+                payCell.textContent = member.pay;
+
+                const variableCell = document.createElement('td');
+                variableCell.className = 'ranking-variable';
+                variableCell.textContent = member.variable;
 
                 // Adicionar células à linha
                 row.appendChild(positionCell);
                 row.appendChild(nameCell);
                 row.appendChild(storeCell);
-                row.appendChild(scoreCell);
+                row.appendChild(payCell);
+                row.appendChild(variableCell);
 
                 // Adicionar linha à tabela
                 tableBody.appendChild(row);
@@ -758,6 +1420,9 @@
             if (nome) {
                 // Exibir apenas o nome do usuário na mensagem de boas-vindas
                 document.getElementById('welcomeMessage').textContent = `Bem-vindo, ${nome}!`;
+
+                // Ordenar membros da equipe por pay
+                sortTeamMembersByPay();
 
                 // Atualizar pódio
                 updatePodium();
@@ -774,8 +1439,28 @@
             }
         }
 
+        // Função para controlar a opacidade da navbar baseada no scroll
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
         // Inicializar a página quando o DOM estiver carregado
-        document.addEventListener('DOMContentLoaded', initPage);
+        document.addEventListener('DOMContentLoaded', function () {
+            initPage();
+
+            // Adicionar listener para o scroll da navbar
+            window.addEventListener('scroll', handleNavbarScroll);
+
+            // Chamar uma vez para definir o estado inicial
+            handleNavbarScroll();
+        });
     </script>
 </body>
 
