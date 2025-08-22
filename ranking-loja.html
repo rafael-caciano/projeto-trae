@@ -284,6 +284,17 @@
         /* Sistema de abas */
         .tabs-container {
             margin-bottom: 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab-content {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tracking-table {
+            min-width: 600px;
         }
 
         .tabs-nav {
@@ -901,25 +912,21 @@
             pcj: {
                 sw32: {
                     volume: { meta: 9.5, real: 0 },
-                    conversao: { meta: 15, real: 12 },
                     promotores: 'Nathalia D. 16.7% / Eduardo 15.7% / Bruno 12.9%',
                     detratores: 'Camila 0.4% / Isabela 0.6% / Gabriely 1.9%'
                 },
                 sw33: {
                     volume: { meta: 9.5, real: 0 },
-                    conversao: { meta: 15, real: 14 },
                     promotores: 'Ruth 16% / Duda 14% / Nathalia D. 10%',
                     detratores: 'Nathalia M. 4% / Camila 5% / Bruno 5%'
                 },
                 sw34: {
                     volume: { meta: 9.5, real: 0 },
-                    conversao: { meta: 15, real: 16 },
                     promotores: 'Eduardo 18% / Nathalia D. 15% / Ruth 13%',
                     detratores: 'Bruno 3% / Camila 3.5% / Isabela 4%'
                 },
                 sw35: {
                     volume: { meta: 9.5, real: 0 },
-                    conversao: { meta: 15, real: 13 },
                     promotores: 'Nathalia D. 17% / Ruth 15% / Eduardo 14%',
                     detratores: 'Gabriely 2% / Camila 2.5% / Bruno 3%'
                 }
@@ -1034,19 +1041,7 @@
                     tbody.appendChild(row);
                 }
 
-                // Conversão
-                if (data.conversao) {
-                    const balance = calculateBalance(data.conversao.real, data.conversao.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">CONVERSÃO</td>
-                        <td class="meta-column">${data.conversao.meta}%</td>
-                        <td>${data.conversao.real}%</td>
-                        <td class="${getBalanceClass(balance)}">${balance > 0 ? '+' : ''}${balance}%</td>
-                        <td class="${getPositionClass(Math.random() * 10 + 1)}">${Math.floor(Math.random() * 10 + 1)}°</td>
-                    `;
-                    tbody.appendChild(row);
-                }
+
 
                 // Promotores
                 if (data.promotores) {
