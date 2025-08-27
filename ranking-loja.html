@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Ranking Loja</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -456,6 +457,73 @@
             font-weight: bold;
         }
 
+        /* Tooltips para nomes */
+        .name-cell {
+            position: relative;
+            cursor: pointer;
+            padding: 8px;
+            border-right: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .name-cell:hover {
+            background-color: #e3f2fd;
+        }
+
+        .name-cell:last-child {
+            border-right: none;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #333;
+        }
+
+        .name-cell:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .tooltip-item {
+            display: flex;
+            justify-content: space-between;
+            min-width: 100px;
+        }
+
+        .tooltip-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             body {
@@ -552,7 +620,7 @@
                         <button class="tab-button" onclick="showTab('pay', 'sw34')">SW 34</button>
                         <button class="tab-button" onclick="showTab('pay', 'sw35')">SW 35</button>
                     </div>
-                    
+
                     <div id="pay-sw32" class="tab-content active">
                         <table class="tracking-table">
                             <thead>
@@ -569,7 +637,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div id="pay-sw33" class="tab-content">
                         <table class="tracking-table">
                             <thead>
@@ -586,7 +654,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div id="pay-sw34" class="tab-content">
                         <table class="tracking-table">
                             <thead>
@@ -603,7 +671,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div id="pay-sw35" class="tab-content">
                         <table class="tracking-table">
                             <thead>
@@ -633,7 +701,7 @@
                         <button class="tab-button" onclick="showTab('pcj', 'sw34')">SW 34</button>
                         <button class="tab-button" onclick="showTab('pcj', 'sw35')">SW 35</button>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="pcj-sw32" class="tab-content active">
                         <table class="tracking-table">
@@ -651,7 +719,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="pcj-sw33" class="tab-content">
                         <table class="tracking-table">
@@ -669,7 +737,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="pcj-sw34" class="tab-content">
                         <table class="tracking-table">
@@ -687,7 +755,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="pcj-sw35" class="tab-content">
                         <table class="tracking-table">
@@ -718,7 +786,7 @@
                         <button class="tab-button" onclick="showTab('seguros', 'sw34')">SW 34</button>
                         <button class="tab-button" onclick="showTab('seguros', 'sw35')">SW 35</button>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="seguros-sw32" class="tab-content active">
                         <table class="tracking-table">
@@ -736,7 +804,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="seguros-sw33" class="tab-content">
                         <table class="tracking-table">
@@ -754,7 +822,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="seguros-sw34" class="tab-content">
                         <table class="tracking-table">
@@ -772,7 +840,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="seguros-sw35" class="tab-content">
                         <table class="tracking-table">
@@ -803,7 +871,7 @@
                         <button class="tab-button" onclick="showTab('cpf', 'sw34')">SW 34</button>
                         <button class="tab-button" onclick="showTab('cpf', 'sw35')">SW 35</button>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="cpf-sw32" class="tab-content active">
                         <table class="tracking-table">
@@ -821,7 +889,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="cpf-sw33" class="tab-content">
                         <table class="tracking-table">
@@ -839,7 +907,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="cpf-sw34" class="tab-content">
                         <table class="tracking-table">
@@ -857,7 +925,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="cpf-sw35" class="tab-content">
                         <table class="tracking-table">
@@ -1023,7 +1091,7 @@
         function populateWeekData(section, week) {
             const data = weeklyData[section][week];
             const tbody = document.getElementById(`${section}-${week}-body`);
-            
+
             tbody.innerHTML = '';
 
             if (section === 'pay') {
@@ -1049,7 +1117,51 @@
                     row.innerHTML = `
                         <td class="indicator-name">PROMOTORES</td>
                         <td class="meta-column">NOME</td>
-                        <td colspan="3">${data.promotores}</td>
+                        <td class="name-cell">
+                            Jackeline
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell">
+                            Vanessa
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell">
+                            Nathalia
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     `;
                     tbody.appendChild(row);
                 }
@@ -1060,7 +1172,51 @@
                     row.innerHTML = `
                         <td class="indicator-name">DETRATORES</td>
                         <td class="meta-column">NOME</td>
-                        <td colspan="3" class="negative-value">${data.detratores}</td>
+                        <td class="name-cell negative-value">
+                            Bruno
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell negative-value">
+                            Eduardo
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell negative-value">
+                            Ruth
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     `;
                     tbody.appendChild(row);
                 }
@@ -1099,7 +1255,51 @@
                     row.innerHTML = `
                         <td class="indicator-name">PROMOTORES</td>
                         <td class="meta-column">NOME</td>
-                        <td colspan="3">${data.promotores}</td>
+                        <td class="name-cell">
+                            Nathalia D.
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell">
+                            Eduardo
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell">
+                            Bruno
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     `;
                     tbody.appendChild(row);
                 }
@@ -1110,7 +1310,51 @@
                     row.innerHTML = `
                         <td class="indicator-name">DETRATORES</td>
                         <td class="meta-column">NOME</td>
-                        <td colspan="3" class="negative-value">${data.detratores}</td>
+                        <td class="name-cell negative-value">
+                            Camila
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell negative-value">
+                            Isabela
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="name-cell negative-value">
+                            Gabriely
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Volume:</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">Conversão:</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     `;
                     tbody.appendChild(row);
                 }
@@ -1205,7 +1449,7 @@
         function handleNavbarScroll() {
             const navbar = document.getElementById('navbar');
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
+
             if (scrollTop > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -1214,20 +1458,20 @@
         }
 
         // Inicializar a página quando o DOM estiver carregado
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Popular dados iniciais para todos os indicadores
             const sections = ['pay', 'pcj', 'seguros', 'cpf'];
             const weeks = ['sw32', 'sw33', 'sw34', 'sw35'];
-            
+
             sections.forEach(section => {
                 weeks.forEach(week => {
                     populateWeekData(section, week);
                 });
             });
-            
+
             // Adicionar listener para o scroll da navbar
             window.addEventListener('scroll', handleNavbarScroll);
-            
+
             // Chamar uma vez para definir o estado inicial
             handleNavbarScroll();
         });
