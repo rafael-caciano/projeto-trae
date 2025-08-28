@@ -11,29 +11,24 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 ### 🔧 Requisitos Funcionais
 
 #### RF01 - Sistema de Login
-- O sistema deve permitir que usuários façam login informando nome e loja
+- O sistema deve permitir que usuários façam login informando nome e loja (podendo futuramente restringir acesso por loja)
 - Os dados do usuário devem ser armazenados para personalização da experiência
 - Após o login, o usuário deve ser direcionado para a página principal
 
 #### RF02 - Dashboard Principal (Welcome)
 - Exibir boas-vindas personalizadas com o nome do usuário
 - Mostrar ranking da equipe ordenado por performance (pays)
+- E apresentar acompanhamento de variavel.
 - Apresentar indicadores principais: Pay Mês, Pay Semana e NPS
 - Calcular automaticamente diferenças entre metas e resultados
 - Destacar os 3 melhores performers da semana
 
 #### RF03 - Acompanhamento por Semanas (Ranking Loja)
-- Organizar dados por semanas específicas (SW32, SW33, SW34, SW35)
+- Organizar dados por semanas específicas (ex:SW32, SW33, SW34, SW35)
 - Separar indicadores por categorias: PAY, PCJ, SEGUROS, CPF/PTC/SNIPER
 - Calcular automaticamente saldo/débito (real - meta)
 - Aplicar cores visuais baseadas na performance
 - Mostrar detalhes de promotores e detratores com tooltips
-
-#### RF04 - Página de Indicadores Editáveis (ICP)
-- Permitir edição de dados através de interface web
-- Implementar sistema de autenticação para modo administrador
-- Controlar acesso com senha para edições
-- Salvar alterações automaticamente
 
 #### RF05 - Sistema de Navegação
 - Menu de navegação fixo entre as páginas
@@ -46,7 +41,7 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 - Interface intuitiva e fácil de usar
 - Cores e indicadores visuais claros
 - Tooltips informativos ao passar o mouse
-- Design responsivo para mobile e desktop
+- Design responsivo para mobile e desktop (visando implementar app mobile)
 
 #### RNF02 - Performance
 - Carregamento rápido das páginas
@@ -54,9 +49,9 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 - Cálculos automáticos em tempo real
 
 #### RNF03 - Segurança
-- Controle de acesso para funcionalidades administrativas
-- Validação de senha para modo de edição
-- Armazenamento seguro de dados do usuário
+- Controle de acesso para funcionalidades administrativas (ainda nao se aplica)
+- Validação de senha para modo de edição (ainda nao se aplica)
+- Armazenamento seguro de dados do usuário (ainda nao se aplica)
 
 #### RNF04 - Compatibilidade
 - Funcionar em navegadores modernos
@@ -116,7 +111,7 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 > **Para que** eu possa identificar tendências e padrões
 
 **Critérios de Aceite:**
-- ✅ Abas separadas para cada semana (SW32, SW33, SW34, SW35)
+- ✅ Abas separadas para cada semana (ex:SW32, SW33, SW34, SW35)
 - ✅ Dados organizados por categorias de indicadores
 - ✅ Navegação fácil entre as semanas
 - ✅ Scroll horizontal para visualização em telas menores
@@ -145,30 +140,6 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 
 ---
 
-### ⚙️ Módulo Administrativo (ICP)
-
-**História 7: Controle de Acesso**
-> **Como** administrador do sistema  
-> **Eu quero** controlar quem pode editar os dados  
-> **Para que** apenas pessoas autorizadas façam alterações
-
-**Critérios de Aceite:**
-- ✅ Pergunta inicial sobre acesso administrativo
-- ✅ Validação de senha para modo de edição
-- ✅ Modo somente leitura para usuários comuns
-- ✅ Mensagens claras sobre o tipo de acesso
-
-**História 8: Edição de Indicadores**
-> **Como** administrador autorizado  
-> **Eu quero** editar os dados dos indicadores diretamente na web  
-> **Para que** eu possa manter as informações sempre atualizadas
-
-**Critérios de Aceite:**
-- ✅ Células clicáveis para edição
-- ✅ Salvamento automático das alterações
-- ✅ Feedback visual das mudanças
-- ✅ Botão para confirmar salvamento
-
 **História 9: Navegação Entre Páginas**
 > **Como** usuário do sistema  
 > **Eu quero** navegar facilmente entre as diferentes páginas  
@@ -189,8 +160,7 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 projeto-trae/
 ├── index.html          # Página de login
 ├── welcome.html        # Dashboard principal
-├── ranking-loja.html   # Acompanhamento semanal
-├── icp.html           # Indicadores editáveis
+├── ranking-loja.html   # Acompanhamento semanal      
 ├── styles.css         # Estilos globais
 └── DOCUMENTACAO.md    # Esta documentação
 ```
@@ -199,13 +169,12 @@ projeto-trae/
 1. **Login** (index.html) → Usuário informa nome e loja
 2. **Dashboard** (welcome.html) → Visualiza ranking e indicadores
 3. **Acompanhamento** (ranking-loja.html) → Analisa dados por semana
-4. **ICP** (icp.html) → Edita indicadores (se autorizado)
 
 ### 💾 Armazenamento de Dados
 - **LocalStorage**: Dados do usuário logado
 - **JavaScript**: Dados dos indicadores e rankings
 - **CSS**: Configurações visuais e responsividade
-
+- **BancoDeDados** (implementações futuras)
 ---
 
 ## 🎨 Design e Interface
@@ -278,9 +247,11 @@ Para dúvidas, sugestões ou problemas técnicos:
 - Certifique-se de que o navegador suporta JavaScript
 - Em caso de problemas, recarregue a página (Ctrl+F5)
 - Para edições, use sempre o modo administrador
-
+- Suporte técnico: 
+  - Email: r4faelcaci@outlook.com
+  - Telefone: (21) 98004-6974
 ---
 
-*Documentação criada em: Dezembro 2024*  
+*Documentação criada em: Agosto de 2025*  
 *Versão: 1.0*  
 *Sistema: AcompanhAqui - Acompanhamento de Performance*
