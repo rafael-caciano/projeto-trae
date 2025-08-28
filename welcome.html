@@ -1260,17 +1260,17 @@
 
     <script>
         let teamMembers = [
-            { name: 'Nathalia Dias', store: 'alc', pay: 6, variable: 55.500 },
-            { name: 'Jessica', store: 'alc', pay: 1, variable: 34.000 },
-            { name: 'Isabella', store: 'alc', pay: 6, variable: 41.600 },
-            { name: 'Jackeline', store: 'alc', pay: 13, variable: 52.700 },
-            { name: 'Gabryella', store: 'alc', pay: 3, variable: 21.100 },
+            { name: 'Nathalia Dias', store: 'alc', pay: 0, variable: 55.500 },
+            { name: 'Jessica', store: 'alc', pay: 0, variable: 34.000 },
+            { name: 'Isabella', store: 'alc', pay: 0, variable: 41.600 },
+            { name: 'Jackeline', store: 'alc', pay: 0, variable: 52.700 },
+            { name: 'Gabryella', store: 'alc', pay: 0, variable: 21.100 },
             { name: 'Vanessa', store: 'alc', pay: 0, variable: 49.200 },
-            { name: 'Lunana', store: 'alc', pay: 20, variable: 18.100 },
-            { name: 'Natalya Silva', store: 'alc', pay: 5, variable: 8.700 },
-            { name: 'Ruth', store: 'alc', pay: 1, variable: 31.700 },
-            { name: 'Lorrane', store: 'alc', pay: 4, variable: 49.700 },
-            { name: 'Kaylane', store: 'alc', pay: 3, variable: 34.600 }
+            { name: 'Lunana', store: 'alc', pay: 0, variable: 18.100 },
+            { name: 'Natalya Silva', store: 'alc', pay: 0, variable: 8.700 },
+            { name: 'Ruth', store: 'alc', pay: 0, variable: 31.700 },
+            { name: 'Lorrane', store: 'alc', pay: 0, variable: 49.700 },
+            { name: 'Kaylane', store: 'alc', pay: 0, variable: 34.600 }
         ];
 
         // Dados dos indicadores atualizados
@@ -1461,6 +1461,76 @@
             handleNavbarScroll();
         });
     </script>
+    
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2024 AcompanhAqui - Sistema de Acompanhamento de Performance</p>
+                <p>Desenvolvido por <strong>Rafael Caciano</strong></p>
+            </div>
+            <div class="footer-contact">
+                <p>Suporte Técnico: <a href="mailto:suporte@acompanhaqui.com">suporte@acompanhaqui.com</a></p>
+                <p>Versão 1.0</p>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+        .footer {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info, .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: #81c784;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #a5d6a7;
+            text-decoration: underline;
+        }
+        
+        .footer strong {
+            color: #81c784;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
 </body>
 
 </html>
