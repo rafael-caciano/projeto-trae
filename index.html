@@ -110,21 +110,24 @@
         }
 
         @media (max-width: 768px) {
-             .footer-content {
-                 flex-direction: column;
-                 text-align: center;
-                 gap: 10px;
-             }
-             
-             .footer {
-                 position: relative;
-                 margin: 40px -10px -10px -10px;
-             }
-             
-             body {
-                 padding-bottom: 0;
-             }
-         }
+              .footer-content {
+                  flex-direction: column;
+                  text-align: center;
+                  gap: 10px;
+              }
+              
+              .footer {
+                  position: fixed;
+                  bottom: 0;
+                  left: 0;
+                  width: 100%;
+                  margin: -10px;
+              }
+              
+              body {
+                  padding-bottom: 120px;
+              }
+          }
 
         /* Ajuste para não sobrepor o conteúdo */
         body {
