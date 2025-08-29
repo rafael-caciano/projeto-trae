@@ -11,7 +11,7 @@ O **AcompanhAqui** é um sistema web para acompanhamento de performance de equip
 ### 🔧 Requisitos Funcionais
 
 #### RF01 - Sistema de Login
-- O sistema deve permitir que usuários façam login informando nome e loja (podendo futuramente restringir acesso por loja)
+- O sistema deve permitir que usuários façam login informando nome e loja (podendo futuramente restringir acesso por loja e cargo)
 - Os dados do usuário devem ser armazenados para personalização da experiência
 - Após o login, o usuário deve ser direcionado para a página principal
 
