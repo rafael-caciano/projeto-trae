@@ -1062,7 +1062,8 @@
         function getPositionClass(position) {
             const pos = parseInt(position);
             if (pos >= 1 && pos <= 3) return 'position-good';
-            if (pos >= 4 && pos <= 6) return 'position-medium';
+            if (pos >= 4 && pos <= 7) return 'position-medium';
+            if (pos >= 8 && pos <= 14) return 'position-bad';
             return 'position-bad';
         }
 
