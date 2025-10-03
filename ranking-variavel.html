@@ -770,6 +770,42 @@
             }
         }
 
+        // Função para detectar e armazenar data de última atualização
+        function updateLastUpdateDate() {
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Armazenar no localStorage
+            localStorage.setItem('lastUpdateDate', formattedDate);
+            
+            // Atualizar elemento na página se existir
+            const lastUpdateElement = document.getElementById('lastUpdateDate');
+            if (lastUpdateElement) {
+                lastUpdateElement.textContent = formattedDate;
+            }
+        }
+
+        // Função para exibir data de última atualização
+        function displayLastUpdateDate() {
+            const lastUpdate = localStorage.getItem('lastUpdateDate');
+            const lastUpdateElement = document.getElementById('lastUpdateDate');
+            
+            if (lastUpdateElement) {
+                if (lastUpdate) {
+                    lastUpdateElement.textContent = lastUpdate;
+                } else {
+                    // Se não houver data armazenada, usar data atual
+                    updateLastUpdateDate();
+                }
+            }
+        }
+
         // Função para controlar a opacidade da navbar baseada no scroll
         function handleNavbarScroll() {
             const navbar = document.getElementById('navbar');
@@ -785,6 +821,12 @@
         // Inicializar a página quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', function () {
             initPage();
+            
+            // Atualizar data de última atualização
+            updateLastUpdateDate();
+            
+            // Exibir data de última atualização
+            displayLastUpdateDate();
 
             // Adicionar listener para o scroll da navbar
             window.addEventListener('scroll', handleNavbarScroll);
@@ -796,6 +838,7 @@
             <div class="footer-info">
                 <p>&copy; 2025 AcompanhAqui - Sistema de Acompanhamento de Performance</p>
                 <p>Desenvolvido por <strong>Rafael Caciano</strong></p>
+                <p><strong>Última atualização:</strong> <span id="lastUpdateDate">Carregando...</span></p>
             </div>
             <div class="footer-contact">
                 <p>Suporte Técnico: <a href="mailto:suporte@acompanhaqui.com">suporte@acompanhaqui.com</a></p>
