@@ -281,6 +281,7 @@
             padding: 15px 8px;
             position: relative;
             justify-content: flex-end;
+            overflow: visible;
         }
 
         .podium-second .podium-base {
@@ -316,6 +317,14 @@
             margin-bottom: 5px;
             text-align: center;
             line-height: 1.2;
+            max-width: 100%;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            display: block;
+            -webkit-box-orient: initial;
+            -webkit-line-clamp: initial;
+            overflow: visible;
         }
 
         .podium-score {
@@ -1104,6 +1113,94 @@
             }
         }
     </style>
+
+    <!-- Overrides finais para garantir responsividade e nomes não cortados no pódio -->
+    <style>
+        /* Proteção mínima de largura para o container principal */
+        .welcome-container {
+            min-width: 320px;
+        }
+
+        /* Ajustes específicos para <= 400px: aumentar alturas para acomodar nomes longos */
+        @media (max-width: 400px) {
+            .podium-container {
+                height: 120px;
+                margin: 10px auto 15px auto;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 5px 3px;
+            }
+
+            .podium-first .podium-base {
+                height: 95px;
+                padding-top: 12px;
+            }
+
+            .podium-second .podium-base {
+                height: 80px;
+            }
+
+            .podium-third .podium-base {
+                height: 70px;
+            }
+
+            .podium-name {
+                font-size: 11px;
+                line-height: 1.2;
+            }
+
+            .podium-score {
+                font-size: 13px;
+            }
+        }
+    </style>
+
+    <!-- Manter layout de ≥769px para o pódio entre 400px e 768px -->
+    <style>
+        @media (min-width: 400px) and (max-width: 768px) {
+            .podium-container {
+                height: 200px;
+                margin: 20px auto 30px auto;
+                max-width: 400px;
+            }
+
+            .podium-base {
+                width: 100px;
+                padding: 15px 8px;
+            }
+
+            .podium-first .podium-base {
+                height: 150px;
+                padding-top: 20px;
+            }
+
+            .podium-second .podium-base {
+                height: 120px;
+            }
+
+            .podium-third .podium-base {
+                height: 90px;
+            }
+
+            .podium-number {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+
+            .podium-name {
+                font-size: 12px;
+                line-height: 1.2;
+            }
+
+            .podium-score {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    
 </head>
 
 <body>

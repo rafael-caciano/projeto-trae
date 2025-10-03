@@ -116,6 +116,7 @@
         .welcome-container {
             width: 100%;
             max-width: 1200px;
+            min-width: 320px;
             padding: 15px;
             margin: 0 auto;
             box-sizing: border-box;
@@ -176,6 +177,46 @@
             max-width: 400px;
         }
 
+        /* Ajustes específicos para telas muito pequenas (<= 400px) */
+        @media (max-width: 400px) {
+            .podium-container {
+                height: 90px;
+                margin: 8px auto 12px auto;
+                max-width: 320px;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 4px 2px;
+            }
+
+            .podium-second .podium-base {
+                height: 60px;
+            }
+
+            .podium-first .podium-base {
+                height: 75px;
+                padding-top: 12px;
+            }
+
+            .podium-third .podium-base {
+                height: 50px;
+            }
+
+            .podium-number {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+
+            .podium-name {
+                font-size: 10px;
+            }
+
+            .podium-score {
+                font-size: 12px;
+            }
+        }
+
         .podium-item {
             text-align: center;
             position: relative;
@@ -191,6 +232,7 @@
             padding: 15px 8px;
             position: relative;
             justify-content: flex-end;
+            overflow: hidden;
         }
 
         .podium-second .podium-base {
@@ -226,6 +268,14 @@
             margin-bottom: 5px;
             text-align: center;
             line-height: 1.2;
+            max-width: 100%;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
         }
 
         .podium-score {
@@ -333,6 +383,53 @@
             .ranking-table th,
             .ranking-table td {
                 padding: 8px 4px;
+            }
+        }
+    </style>
+    <!-- Ajuste final de responsividade para telas muito pequenas -->
+    <style>
+        @media (max-width: 400px) {
+            .podium-container {
+                height: 90px;
+                margin: 8px auto 12px auto;
+                max-width: 320px;
+                width: 100%;
+            }
+
+            .podium-item {
+                margin: 0 3px;
+            }
+
+            .podium-base {
+                width: 56px;
+                padding: 4px 2px;
+            }
+
+            .podium-second .podium-base {
+                height: 60px;
+            }
+
+            .podium-first .podium-base {
+                height: 75px;
+                padding-top: 10px;
+            }
+
+            .podium-third .podium-base {
+                height: 50px;
+            }
+
+            .podium-number {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+
+            .podium-name {
+                font-size: 10px;
+                line-height: 1.1;
+            }
+
+            .podium-score {
+                font-size: 12px;
             }
         }
     </style>
@@ -906,6 +1003,61 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
+            }
+        }
+    </style>
+
+    <!-- Overrides para garantir que os nomes não sejam cortados e ajustar alturas em telas pequenas -->
+    <style>
+        /* Não cortar conteúdo do pódio */
+        .podium-base {
+            overflow: visible;
+        }
+
+        /* Permitir quebra de linha e evitar corte do nome */
+        .podium-name {
+            max-width: 100%;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            display: block;
+            -webkit-box-orient: initial;
+            -webkit-line-clamp: initial;
+            overflow: visible;
+        }
+
+        /* Ajustes específicos para <= 400px: aumentar alturas para acomodar nomes longos */
+        @media (max-width: 400px) {
+            .podium-container {
+                height: 120px;
+                margin: 10px auto 15px auto;
+            }
+
+            .podium-base {
+                width: 60px;
+                padding: 5px 3px;
+            }
+
+            .podium-first .podium-base {
+                height: 95px;
+                padding-top: 12px;
+            }
+
+            .podium-second .podium-base {
+                height: 80px;
+            }
+
+            .podium-third .podium-base {
+                height: 70px;
+            }
+
+            .podium-name {
+                font-size: 11px;
+                line-height: 1.2;
+            }
+
+            .podium-score {
+                font-size: 13px;
             }
         }
     </style>
