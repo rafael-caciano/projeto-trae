@@ -164,65 +164,74 @@
             text-align: center;
         }
 
-        .podium {
+        /* Estilos para o pódio - Ajustado para responsividade */
+        .podium-container {
             display: flex;
             justify-content: center;
-            align-items: end;
-            margin-bottom: 30px;
-            gap: 20px;
+            align-items: flex-end;
+            margin: 20px auto 30px auto;
+            height: 200px;
+            overflow: visible;
+            width: 100%;
+            max-width: 400px;
         }
 
-        .podium-position {
+        .podium-item {
             text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            padding: 15px;
-            color: white;
-            min-width: 120px;
+            position: relative;
+            margin: 0 5px;
         }
 
-        .podium-first {
-            order: 2;
-            height: 120px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #333;
-        }
-
-        .podium-second {
-            order: 1;
-            height: 100px;
-            background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
-            color: #333;
-        }
-
-        .podium-third {
-            order: 3;
-            height: 80px;
-            background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
-            color: white;
-            text-align: center;
+        .podium-base {
+            width: 100px;
+            border-radius: 10px 10px 0 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            overflow: hidden;
+            padding: 15px 8px;
+            position: relative;
+            justify-content: flex-end;
+        }
+
+        .podium-second .podium-base {
+            height: 120px;
+            background-color: #C0C0C0;
+            justify-content: flex-end;
+        }
+
+        .podium-first .podium-base {
+            height: 150px;
+            background-color: #FFD700;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        .podium-third .podium-base {
+            height: 90px;
+            background-color: #CD7F32;
+            justify-content: center;
         }
 
         .podium-number {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 5px;
+            color: #333;
+            margin-bottom: 8px;
         }
 
         .podium-name {
-            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            font-size: 12px;
             margin-bottom: 5px;
-            word-wrap: break-word;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .podium-score {
-            font-size: 16px;
             font-weight: bold;
+            color: #333;
+            font-size: 16px;
         }
 
         .table-container {
@@ -362,22 +371,33 @@
             <div class="ranking-card">
                 <div class="ranking-title">🏆 Ranking por Total de Pontos</div>
 
-                <!-- Pódio -->
-                <div class="podium">
-                    <div class="podium-position podium-second">
-                        <div class="podium-number">2º</div>
-                        <div class="podium-name" id="variable-podium-second-name">-</div>
-                        <div class="podium-score" id="variable-podium-second-score">0</div>
+                <!-- Pódio para os três primeiros -->
+                <div class="podium-container">
+                    <!-- Segundo lugar -->
+                    <div class="podium-item podium-second">
+                        <div class="podium-base">
+                            <div class="podium-number">2</div>
+                            <div class="podium-name" id="variable-podium-second-name">-</div>
+                            <div class="podium-score" id="variable-podium-second-score">0</div>
+                        </div>
                     </div>
-                    <div class="podium-position podium-first">
-                        <div class="podium-number">1º</div>
-                        <div class="podium-name" id="variable-podium-first-name">-</div>
-                        <div class="podium-score" id="variable-podium-first-score">0</div>
+
+                    <!-- Primeiro lugar -->
+                    <div class="podium-item podium-first">
+                        <div class="podium-base">
+                            <div class="podium-number">1</div>
+                            <div class="podium-name" id="variable-podium-first-name">-</div>
+                            <div class="podium-score" id="variable-podium-first-score">0</div>
+                        </div>
                     </div>
-                    <div class="podium-position podium-third">
-                        <div class="podium-number">3º</div>
-                        <div class="podium-name" id="variable-podium-third-name">-</div>
-                        <div class="podium-score" id="variable-podium-third-score">0</div>
+
+                    <!-- Terceiro lugar -->
+                    <div class="podium-item podium-third">
+                        <div class="podium-base">
+                            <div class="podium-number">3</div>
+                            <div class="podium-name" id="variable-podium-third-name">-</div>
+                            <div class="podium-score" id="variable-podium-third-score">0</div>
+                        </div>
                     </div>
                 </div>
 
@@ -577,18 +597,42 @@
             teamMembers.sort((a, b) => b.totalPoints - a.totalPoints);
         }
 
+        // Função para extrair apenas os dois primeiros nomes
+        function formatName(fullName) {
+            if (!fullName) return '';
+            
+            const nameParts = fullName.trim().split(' ');
+            
+            // Se há apenas um nome, retorna ele
+            if (nameParts.length === 1) {
+                return nameParts[0];
+            }
+            
+            // Se há dois ou mais nomes, verifica se o segundo nome tem menos de 3 letras
+            if (nameParts.length >= 2) {
+                // Se o segundo nome tem menos de 3 letras, retorna apenas o primeiro
+                if (nameParts[1].length < 3) {
+                    return nameParts[0];
+                }
+                // Caso contrário, retorna os dois primeiros nomes
+                return nameParts.slice(0, 2).join(' ');
+            }
+            
+            return nameParts[0];
+        }
+
         // Função para atualizar o pódio do ranking variável
         function updateVariablePodium() {
             const sortedByTotal = [...teamMembers].sort((a, b) => b.totalPoints - a.totalPoints);
             
             if (sortedByTotal.length >= 3) {
-                document.getElementById('variable-podium-first-name').textContent = sortedByTotal[0].name;
+                document.getElementById('variable-podium-first-name').textContent = formatName(sortedByTotal[0].name);
                 document.getElementById('variable-podium-first-score').textContent = sortedByTotal[0].totalPoints;
 
-                document.getElementById('variable-podium-second-name').textContent = sortedByTotal[1].name;
+                document.getElementById('variable-podium-second-name').textContent = formatName(sortedByTotal[1].name);
                 document.getElementById('variable-podium-second-score').textContent = sortedByTotal[1].totalPoints;
 
-                document.getElementById('variable-podium-third-name').textContent = sortedByTotal[2].name;
+                document.getElementById('variable-podium-third-name').textContent = formatName(sortedByTotal[2].name);
                 document.getElementById('variable-podium-third-score').textContent = sortedByTotal[2].totalPoints;
             }
         }
@@ -614,7 +658,7 @@
 
                 const nameCell = document.createElement('td');
                 nameCell.className = 'ranking-name';
-                nameCell.textContent = member.name;
+                nameCell.textContent = formatName(member.name);
 
                 const tktsPayCell = document.createElement('td');
                 tktsPayCell.textContent = member.tktsPay;
@@ -746,6 +790,82 @@
             window.addEventListener('scroll', handleNavbarScroll);
         });
     </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 AcompanhAqui - Sistema de Acompanhamento de Performance</p>
+                <p>Desenvolvido por <strong>Rafael Caciano</strong></p>
+            </div>
+            <div class="footer-contact">
+                <p>Suporte Técnico: <a href="mailto:suporte@acompanhaqui.com">suporte@acompanhaqui.com</a></p>
+                <p>Versão 1.0</p>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+        .footer {
+              background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+              color: white;
+              padding: 20px 0;
+              margin: 0;
+              margin-bottom: 0;
+              width: 100vw;
+              position: relative;
+              left: 50%;
+              right: 50%;
+              margin-left: -50vw;
+              margin-right: -50vw;
+              box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+          }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info, .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: #81c784;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #a5d6a7;
+            text-decoration: underline;
+        }
+        
+        .footer strong {
+            color: #81c784;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
 </body>
 
 </html>

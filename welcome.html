@@ -260,7 +260,7 @@
             justify-content: center;
             align-items: flex-end;
             margin: 20px auto 30px auto;
-            height: 160px;
+            height: 200px;
             overflow: visible;
             width: 100%;
             max-width: 400px;
@@ -278,26 +278,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px 8px;
+            padding: 15px 8px;
             position: relative;
             justify-content: flex-end;
         }
 
         .podium-second .podium-base {
-            height: 100px;
+            height: 120px;
             background-color: #C0C0C0;
             justify-content: flex-end;
         }
 
         .podium-first .podium-base {
-            height: 130px;
+            height: 150px;
             background-color: #FFD700;
             justify-content: flex-start;
-            padding-top: 15px;
+            padding-top: 20px;
         }
 
         .podium-third .podium-base {
-            height: 70px;
+            height: 90px;
             background-color: #CD7F32;
             justify-content: center;
         }
@@ -305,13 +305,13 @@
         .podium-number {
             font-size: 20px;
             font-weight: bold;
-            color: white;
+            color: #333;
             margin-bottom: 8px;
         }
 
         .podium-name {
             font-weight: bold;
-            color: white;
+            color: #333;
             font-size: 12px;
             margin-bottom: 5px;
             text-align: center;
@@ -320,7 +320,7 @@
 
         .podium-score {
             font-weight: bold;
-            color: white;
+            color: #333;
             font-size: 16px;
         }
 
@@ -1287,24 +1287,24 @@
                     <div class="highlights-list">
                         <div class="highlight-item">
                             <div>
-                                <div class="highlight-name">Jackeline</div>
+                                <div class="highlight-name">Luanna Morais</div>
                                 <div class="highlight-achievement">1° lugar</div>
                             </div>
-                            <div class="highlight-score">17</div>
+                            <div class="highlight-score">19</div>
                         </div>
                         <div class="highlight-item">
                             <div>
-                                <div class="highlight-name">Vanessa</div>
+                                <div class="highlight-name">Jackeline Felix</div>
                                 <div class="highlight-achievement">2° lugar</div>
                             </div>
-                            <div class="highlight-score">17</div>
+                            <div class="highlight-score">15</div>
                         </div>
                         <div class="highlight-item">
                             <div>
-                                <div class="highlight-name">Nathalia Dias</div>
+                                <div class="highlight-name">Isabella Ramos</div>
                                 <div class="highlight-achievement">3° lugar</div>
                             </div>
-                            <div class="highlight-score">17</div>
+                            <div class="highlight-score">13</div>
                         </div>
                     </div>
                 </div>
@@ -1382,12 +1382,12 @@
 
         // Dados dos indicadores atualizados
         const indicators = {
-            payMonth: { meta: 494, real: 421 },
-            payWeek: { meta: 95, real: 66 },
+            payMonth: { meta: 480, real: 36 },
+            payWeek: { meta: 90, real: 36 },
             nps: {
-                semana: { meta: 85, real: 0 },
-                mes: { meta: 85, real: 57.4 },
-                ano: { meta: 85, real: 72.7 }
+                semana: { meta: 85, real: 100 },
+                mes: { meta: 85, real: 100 },
+                ano: { meta: 85, real: 73.2 }
             }
         };
 
@@ -1480,16 +1480,40 @@
             });
         }
 
+        // Função para extrair apenas os dois primeiros nomes
+        function formatName(fullName) {
+            if (!fullName) return '';
+            
+            const nameParts = fullName.trim().split(' ');
+            
+            // Se há apenas um nome, retorna ele
+            if (nameParts.length === 1) {
+                return nameParts[0];
+            }
+            
+            // Se há dois ou mais nomes, verifica se o segundo nome tem menos de 3 letras
+            if (nameParts.length >= 2) {
+                // Se o segundo nome tem menos de 3 letras, retorna apenas o primeiro
+                if (nameParts[1].length < 3) {
+                    return nameParts[0];
+                }
+                // Caso contrário, retorna os dois primeiros nomes
+                return nameParts.slice(0, 2).join(' ');
+            }
+            
+            return nameParts[0];
+        }
+
         // Função para atualizar o pódio com os dados do ranking
         function updatePodium() {
             if (teamMembers.length >= 3) {
-                document.getElementById('podium-first-name').textContent = teamMembers[0].name;
+                document.getElementById('podium-first-name').textContent = formatName(teamMembers[0].name);
                 document.getElementById('podium-first-score').textContent = teamMembers[0].pay;
 
-                document.getElementById('podium-second-name').textContent = teamMembers[1].name;
+                document.getElementById('podium-second-name').textContent = formatName(teamMembers[1].name);
                 document.getElementById('podium-second-score').textContent = teamMembers[1].pay;
 
-                document.getElementById('podium-third-name').textContent = teamMembers[2].name;
+                document.getElementById('podium-third-name').textContent = formatName(teamMembers[2].name);
                 document.getElementById('podium-third-score').textContent = teamMembers[2].pay;
             }
         }
@@ -1512,7 +1536,7 @@
 
                 const nameCell = document.createElement('td');
                 nameCell.className = 'ranking-name';
-                nameCell.textContent = member.name;
+                nameCell.textContent = formatName(member.name);
 
                 const storeCell = document.createElement('td');
                 storeCell.textContent = member.store;
