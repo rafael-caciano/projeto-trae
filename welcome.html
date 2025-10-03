@@ -29,6 +29,7 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             margin-top: 60px;
+            background-color: #fafafa;
         }
 
         /* Barra de navegação fixa */
@@ -387,6 +388,13 @@
             text-align: right;
         }
 
+        .ranking-total {
+            font-weight: bold;
+            color: #1a237e;
+            text-align: right;
+            background-color: #e8f5e8;
+        }
+
         /* Destaque para os três primeiros na tabela */
         .ranking-table tbody tr:nth-child(1) .ranking-position {
             background-color: #FFD700;
@@ -406,14 +414,28 @@
             border-radius: 4px;
         }
 
-        /* Estilos para os indicadores de meta - Layout responsivo melhorado */
+        /* Container principal para layout flexível */
+        .main-content-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+        }
+
+        .ranking-card {
+            flex: 1;
+            min-width: 300px; /* Largura mínima para cada ranking */
+            margin-bottom: 20px;
+        }
+
         .indicators-container {
+            flex: 0 0 400px; /* Largura fixa para os indicadores */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 20px;
         }
 
+        /* Estilos para os indicadores de meta - Layout responsivo melhorado */
         .indicator-card {
             background-color: #ffffff;
             border-radius: 10px;
@@ -542,18 +564,43 @@
 
         /* Responsividade aprimorada */
         @media (max-width: 1024px) {
+            .main-content-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .indicators-container {
+                flex: none;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
             .welcome-container {
                 max-width: 100%;
                 padding: 12px;
             }
 
-            .indicators-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+            .ranking-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto 20px auto;
+                padding: 15px;
+                box-sizing: border-box;
             }
         }
 
         @media (max-width: 768px) {
+            .main-content-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .indicators-container {
+                flex: none;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
             body {
                 padding: 5px;
             }
@@ -620,11 +667,6 @@
 
             .podium-score {
                 font-size: 14px;
-            }
-
-            .indicators-container {
-                grid-template-columns: 1fr;
-                gap: 10px;
             }
 
             .indicator-card {
@@ -1073,6 +1115,9 @@
                     <a href="welcome.html" class="navbar-link active">Ranking Equipe</a>
                 </li>
                 <li class="navbar-item">
+                    <a href="ranking-variavel.html" class="navbar-link">Ranking Variável</a>
+                </li>
+                <li class="navbar-item">
                     <a href="ranking-loja.html" class="navbar-link">Ranking Loja</a>
                 </li>
                 <li class="navbar-item">
@@ -1091,12 +1136,14 @@
                 <a href="index.html" class="btn-back">Voltar para Login</a>
             </div>
 
-            <!-- Cartão de ranking -->
-            <div class="ranking-card">
-                <h2 class="ranking-title">Ranking da Equipe</h2>
+            <!-- Container flexível para ranking e indicadores -->
+            <div class="main-content-container">
+                <!-- Cartão de ranking -->
+                <div class="ranking-card">
+                    <h2 class="ranking-title">Ranking da Equipe</h2>
 
-                <!-- Pódio para os três primeiros -->
-                <div class="podium-container">
+                    <!-- Pódio para os três primeiros -->
+                    <div class="podium-container">
                     <!-- Segundo lugar -->
                     <div class="podium-item podium-second">
                         <div class="podium-base">
@@ -1143,9 +1190,11 @@
                     </table>
                 </div>
             </div>
+                
+            </div>
 
-            <!-- Indicadores de Meta - Layout Responsivo Melhorado -->
-            <div class="indicators-container">
+                <!-- Indicadores de Meta - Layout Responsivo Melhorado -->
+                <div class="indicators-container">
                 <!-- Pay (mês) -->
                 <div class="indicator-card">
                     <div class="indicator-title">Pay (mês)</div>
@@ -1262,20 +1311,73 @@
             </div>
         </div>
     </div>
+    </div>
 
     <script>
         let teamMembers = [
-            { name: 'Nathalia Dias', store: 'alc', pay: 0, variable: 55.500 },
-            { name: 'Jessica', store: 'alc', pay: 0, variable: 34.000 },
-            { name: 'Isabella', store: 'alc', pay: 0, variable: 41.600 },
-            { name: 'Jackeline', store: 'alc', pay: 0, variable: 52.700 },
-            { name: 'Gabryella', store: 'alc', pay: 0, variable: 21.100 },
-            { name: 'Vanessa', store: 'alc', pay: 0, variable: 49.200 },
-            { name: 'Lunana', store: 'alc', pay: 0, variable: 18.100 },
-            { name: 'Natalya Silva', store: 'alc', pay: 0, variable: 8.700 },
-            { name: 'Ruth', store: 'alc', pay: 0, variable: 31.700 },
-            { name: 'Lorrane', store: 'alc', pay: 0, variable: 49.700 },
-            
+            { 
+                name: 'Jackeline Felix Igidio', 
+                store: 'ALC',
+                pay: 8,
+                variable: 185,
+                position: 1
+            },
+            { 
+                name: 'Jessica Da Silva Grassine', 
+                store: 'ALC',
+                pay: 6,
+                variable: 1498,
+                position: 2
+            },
+            { 
+                name: 'Gabryela Endhell De Souza Coelho Pereira', 
+                store: 'ALC',
+                pay: 4,
+                variable: 3439,
+                position: 3
+            },
+            { 
+                name: 'Luanna Morais Novaes', 
+                store: 'ALC',
+                pay: 4,
+                variable: 3062,
+                position: 3
+            },
+            { 
+                name: 'Vanessa Alves De Lima', 
+                store: 'ALC',
+                pay: 4,
+                variable: 1357,
+                position: 3
+            },
+            { 
+                name: 'Isabella De Jesus Ramos', 
+                store: 'ALC',
+                pay: 4,
+                variable: 76,
+                position: 3
+            },
+            { 
+                name: 'Nathalia Roberta Dias Vieira', 
+                store: 'ALC',
+                pay: 2,
+                variable: 0,
+                position: 7
+            },
+            { 
+                name: 'Lorrane Silva De Oliveira', 
+                store: 'ALC',
+                pay: 1,
+                variable: 0,
+                position: 8
+            },
+            { 
+                name: 'Ruth Vitoria Bastos De Freitas', 
+                store: 'ALC',
+                pay: 0,
+                variable: 0,
+                position: 9
+            }
         ];
 
         // Dados dos indicadores atualizados
@@ -1359,6 +1461,25 @@
             });
         }
 
+        // Função para calcular total de pontos e ordenar por total (do maior para o menor)
+        function sortTeamMembersByTotalPoints() {
+            // Calcular total de pontos para cada membro (soma de todos os pontos)
+            teamMembers.forEach(member => {
+                member.totalPoints = member.ptsApparel + member.ptsCelular + member.ptsMarcaP + 
+                                   member.ptsBeleza + member.ptsRelOcu + member.ptsPay + 
+                                   member.ptsPCJ + member.ptsBolsa + member.ptsParcela + 
+                                   member.ptsProtecao + member.ptsSniper + member.ptsCarrinho;
+            });
+            
+            // Ordenar por total de pontos (do maior para o menor)
+            teamMembers.sort((a, b) => b.totalPoints - a.totalPoints);
+            
+            // Atualizar posições após ordenação
+            teamMembers.forEach((member, index) => {
+                member.positionByTotal = index + 1;
+            });
+        }
+
         // Função para atualizar o pódio com os dados do ranking
         function updatePodium() {
             if (teamMembers.length >= 3) {
@@ -1428,10 +1549,10 @@
                 // Ordenar membros da equipe por pay
                 sortTeamMembersByPay();
 
-                // Atualizar pódio
+                // Atualizar pódio do ranking por pay
                 updatePodium();
 
-                // Preencher a tabela de ranking
+                // Preencher a tabela de ranking por pay
                 populateRankingTable();
 
                 // Atualizar indicadores
@@ -1486,7 +1607,14 @@
               background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
               color: white;
               padding: 20px 0;
-              margin: -10px;
+              margin: 0;
+              margin-bottom: 0;
+              width: 100vw;
+              position: relative;
+              left: 50%;
+              right: 50%;
+              margin-left: -50vw;
+              margin-right: -50vw;
               box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           }
         

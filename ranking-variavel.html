@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Ranking Variável - AcompanhAqui</title>
+    <link rel="icon" type="image/x-icon" href="arquivos/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-top: 60px;
+        }
+
+        /* Melhorias de legibilidade e acessibilidade */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            margin-top: 60px;
+            background-color: #fafafa;
+        }
+
+        /* Barra de navegação fixa */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 35, 126, 1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 35, 126, 0.8);
+            padding: 10px 0;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .navbar-link:hover,
+        .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar.scrolled .navbar-link {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar.scrolled .navbar-link:hover,
+        .navbar.scrolled .navbar-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        body {
+            margin: 0;
+            padding: 80px 10px 10px 10px;
+            /* Top padding for fixed navbar */
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+            display: block !important;
+            /* Override styles.css flex layout */
+            align-items: initial !important;
+            justify-content: initial !important;
+            height: auto !important;
+        }
+
+        .welcome-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .welcome-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos do ranking */
+        .ranking-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .ranking-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .podium {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .podium-position {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            min-width: 120px;
+        }
+
+        .podium-first {
+            order: 2;
+            height: 120px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+        }
+
+        .podium-second {
+            order: 1;
+            height: 100px;
+            background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        .podium-third {
+            order: 3;
+            height: 80px;
+            background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .podium-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .podium-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+        .podium-score {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ranking-table th {
+            background-color: #1a237e;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .ranking-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .ranking-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .ranking-position {
+            font-weight: bold;
+            color: #1a237e;
+            text-align: center;
+            width: 60px;
+        }
+
+        .ranking-name {
+            font-weight: 600;
+            color: #333;
+            min-width: 150px;
+        }
+
+        .ranking-total {
+            font-weight: bold;
+            color: #1a237e;
+            text-align: right;
+            background-color: #e8f5e8;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .welcome-container {
+                max-width: 100%;
+                padding: 12px;
+            }
+
+            .ranking-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto 20px auto;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                gap: 20px;
+            }
+
+            .navbar-link {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+
+            .podium {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .podium-position {
+                width: 100%;
+                max-width: 200px;
+                height: auto !important;
+                order: initial !important;
+            }
+
+            .ranking-table {
+                font-size: 12px;
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegação fixa -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="welcome.html" class="navbar-link">Ranking Equipe</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="ranking-variavel.html" class="navbar-link active">Ranking Variável</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="ranking-loja.html" class="navbar-link">Ranking Loja</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="icp.html" class="navbar-link">ICP</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-container">
+            <!-- Card de boas-vindas -->
+            <div class="welcome-card">
+                <div class="welcome-title">Ranking Variável</div>
+                <div class="welcome-message" id="welcomeMessage">Olá, bem-vindo ao sistema!</div>
+            </div>
+
+            <!-- Ranking Variável -->
+            <div class="ranking-card">
+                <div class="ranking-title">🏆 Ranking por Total de Pontos</div>
+
+                <!-- Pódio -->
+                <div class="podium">
+                    <div class="podium-position podium-second">
+                        <div class="podium-number">2º</div>
+                        <div class="podium-name" id="variable-podium-second-name">-</div>
+                        <div class="podium-score" id="variable-podium-second-score">0</div>
+                    </div>
+                    <div class="podium-position podium-first">
+                        <div class="podium-number">1º</div>
+                        <div class="podium-name" id="variable-podium-first-name">-</div>
+                        <div class="podium-score" id="variable-podium-first-score">0</div>
+                    </div>
+                    <div class="podium-position podium-third">
+                        <div class="podium-number">3º</div>
+                        <div class="podium-name" id="variable-podium-third-name">-</div>
+                        <div class="podium-score" id="variable-podium-third-score">0</div>
+                    </div>
+                </div>
+
+                <!-- Tabela de classificação por total de pontos -->
+                <div class="table-container">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Tkts Pay</th>
+                                <th>%Sniper</th>
+                                <th>Pts Apparel</th>
+                                <th>Pts Celular</th>
+                                <th>Pts Marca P</th>
+                                <th>Pts Beleza</th>
+                                <th>Pts Rel+Ocu</th>
+                                <th>Pts Pay</th>
+                                <th>Pts PCJ</th>
+                                <th>Pts Bolsa</th>
+                                <th>Pts Parcela</th>
+                                <th>Pts Proteção</th>
+                                <th>Pts sniper</th>
+                                <th>Pts carrinho</th>
+                                <th>Total Pontos</th>
+                                <th>Conta de Chegada</th>
+                            </tr>
+                        </thead>
+                        <tbody id="variableRankingTableBody">
+                            <!-- Os dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let teamMembers = [
+            { 
+                name: 'Gabryela Endhell De Souza Coelho Pereira', 
+                tktsPay: 19, 
+                sniper: 66.00, 
+                ptsApparel: 1144, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 908, 
+                ptsRelOcu: 937, 
+                ptsPay: 0, 
+                ptsPCJ: 450, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Luanna Morais Novaes', 
+                tktsPay: 16, 
+                sniper: 66.40, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 1257, 
+                ptsRelOcu: 1355, 
+                ptsPay: 0, 
+                ptsPCJ: 450, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Jessica Da Silva Grassine', 
+                tktsPay: 18, 
+                sniper: 79.00, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 148, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 900, 
+                ptsBolsa: 0, 
+                ptsParcela: 450, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Vanessa Alves De Lima', 
+                tktsPay: 17, 
+                sniper: 72.20, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 457, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 450, 
+                ptsBolsa: 0, 
+                ptsParcela: 450, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Jackeline Felix Igidio', 
+                tktsPay: 23, 
+                sniper: 75.60, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 185, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 0, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Isabella De Jesus Ramos', 
+                tktsPay: 22, 
+                sniper: 73.10, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 76, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 0, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Ruth Vitoria Bastos De Freitas', 
+                tktsPay: 0, 
+                sniper: 0, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 0, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 0, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Lorrane Silva De Oliveira', 
+                tktsPay: 3, 
+                sniper: 100.00, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 0, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 0, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            },
+            { 
+                name: 'Nathalia Roberta Dias Vieira', 
+                tktsPay: 0, 
+                sniper: 0, 
+                ptsApparel: 0, 
+                ptsCelular: 0, 
+                ptsMarcaP: 0, 
+                ptsBeleza: 0, 
+                ptsRelOcu: 0, 
+                ptsPay: 0, 
+                ptsPCJ: 0, 
+                ptsBolsa: 0, 
+                ptsParcela: 0, 
+                ptsProtecao: 0, 
+                ptsSniper: 0, 
+                ptsCarrinho: 0 
+            }
+        ];
+
+        // Função para ordenar membros da equipe por total de pontos
+        function sortTeamMembersByTotalPoints() {
+            teamMembers.sort((a, b) => b.totalPoints - a.totalPoints);
+        }
+
+        // Função para atualizar o pódio do ranking variável
+        function updateVariablePodium() {
+            const sortedByTotal = [...teamMembers].sort((a, b) => b.totalPoints - a.totalPoints);
+            
+            if (sortedByTotal.length >= 3) {
+                document.getElementById('variable-podium-first-name').textContent = sortedByTotal[0].name;
+                document.getElementById('variable-podium-first-score').textContent = sortedByTotal[0].totalPoints;
+
+                document.getElementById('variable-podium-second-name').textContent = sortedByTotal[1].name;
+                document.getElementById('variable-podium-second-score').textContent = sortedByTotal[1].totalPoints;
+
+                document.getElementById('variable-podium-third-name').textContent = sortedByTotal[2].name;
+                document.getElementById('variable-podium-third-score').textContent = sortedByTotal[2].totalPoints;
+            }
+        }
+
+        // Função para preencher a tabela de ranking variável
+        function populateVariableRankingTable() {
+            const tableBody = document.getElementById('variableRankingTableBody');
+
+            // Limpar a tabela antes de preencher
+            tableBody.innerHTML = '';
+
+            // Ordenar por total de pontos
+            const sortedByTotal = [...teamMembers].sort((a, b) => b.totalPoints - a.totalPoints);
+
+            // Adicionar cada membro da equipe à tabela
+            sortedByTotal.forEach((member, index) => {
+                const row = document.createElement('tr');
+
+                // Criar células para cada coluna
+                const positionCell = document.createElement('td');
+                positionCell.className = 'ranking-position';
+                positionCell.textContent = index + 1;
+
+                const nameCell = document.createElement('td');
+                nameCell.className = 'ranking-name';
+                nameCell.textContent = member.name;
+
+                const tktsPayCell = document.createElement('td');
+                tktsPayCell.textContent = member.tktsPay;
+
+                const sniperCell = document.createElement('td');
+                sniperCell.textContent = member.sniper + '%';
+
+                const ptsApparelCell = document.createElement('td');
+                ptsApparelCell.textContent = member.ptsApparel;
+
+                const ptsCelularCell = document.createElement('td');
+                ptsCelularCell.textContent = member.ptsCelular;
+
+                const ptsMarcaPCell = document.createElement('td');
+                ptsMarcaPCell.textContent = member.ptsMarcaP;
+
+                const ptsBelezaCell = document.createElement('td');
+                ptsBelezaCell.textContent = member.ptsBeleza;
+
+                const ptsRelOcuCell = document.createElement('td');
+                ptsRelOcuCell.textContent = member.ptsRelOcu;
+
+                const ptsPayCell = document.createElement('td');
+                ptsPayCell.textContent = member.ptsPay;
+
+                const ptsPCJCell = document.createElement('td');
+                ptsPCJCell.textContent = member.ptsPCJ;
+
+                const ptsBolsaCell = document.createElement('td');
+                ptsBolsaCell.textContent = member.ptsBolsa;
+
+                const ptsParcelaCell = document.createElement('td');
+                ptsParcelaCell.textContent = member.ptsParcela;
+
+                const ptsProtecaoCell = document.createElement('td');
+                ptsProtecaoCell.textContent = member.ptsProtecao;
+
+                const ptsSniperCell = document.createElement('td');
+                ptsSniperCell.textContent = member.ptsSniper;
+
+                const ptsCarrinhoCell = document.createElement('td');
+                ptsCarrinhoCell.textContent = member.ptsCarrinho;
+
+                const totalPointsCell = document.createElement('td');
+                totalPointsCell.className = 'ranking-total';
+                totalPointsCell.textContent = member.totalPoints;
+                totalPointsCell.style.fontWeight = 'bold';
+                totalPointsCell.style.color = '#1a237e';
+
+                // Calcular conta de chegada (100.000 - total pontos)
+                const contaChegadaCell = document.createElement('td');
+                contaChegadaCell.className = 'conta-chegada';
+                const contaChegada = 100000 - member.totalPoints;
+                contaChegadaCell.textContent = contaChegada.toLocaleString('pt-BR');
+                contaChegadaCell.style.fontWeight = 'bold';
+                contaChegadaCell.style.color = '#d32f2f';
+
+                // Adicionar células à linha
+                row.appendChild(positionCell);
+                row.appendChild(nameCell);
+                row.appendChild(tktsPayCell);
+                row.appendChild(sniperCell);
+                row.appendChild(ptsApparelCell);
+                row.appendChild(ptsCelularCell);
+                row.appendChild(ptsMarcaPCell);
+                row.appendChild(ptsBelezaCell);
+                row.appendChild(ptsRelOcuCell);
+                row.appendChild(ptsPayCell);
+                row.appendChild(ptsPCJCell);
+                row.appendChild(ptsBolsaCell);
+                row.appendChild(ptsParcelaCell);
+                row.appendChild(ptsProtecaoCell);
+                row.appendChild(ptsSniperCell);
+                row.appendChild(ptsCarrinhoCell);
+                row.appendChild(totalPointsCell);
+                row.appendChild(contaChegadaCell);
+
+                // Adicionar linha à tabela
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Função para inicializar a página
+        function initPage() {
+            // Verificar se há dados no localStorage
+            const nome = localStorage.getItem('nomeUsuario');
+
+            if (nome) {
+                // Exibir apenas o nome do usuário na mensagem de boas-vindas
+                document.getElementById('welcomeMessage').textContent = `Olá ${nome}`;
+
+                // Calcular total de pontos para todos os membros (soma de todos os indicadores)
+                teamMembers.forEach(member => {
+                    member.totalPoints = member.ptsApparel + member.ptsCelular + member.ptsMarcaP + 
+                                       member.ptsBeleza + member.ptsRelOcu + member.ptsPay + 
+                                       member.ptsPCJ + member.ptsBolsa + member.ptsParcela + 
+                                       member.ptsProtecao + member.ptsSniper + member.ptsCarrinho;
+                });
+
+                // Atualizar pódio do ranking variável (por total de pontos)
+                updateVariablePodium();
+
+                // Preencher a tabela de ranking variável
+                populateVariableRankingTable();
+            } else {
+                // Redirecionar para a página de login se não houver dados
+                alert('Por favor, faça login primeiro.');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Função para controlar a opacidade da navbar baseada no scroll
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Inicializar a página quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function () {
+            initPage();
+
+            // Adicionar listener para o scroll da navbar
+            window.addEventListener('scroll', handleNavbarScroll);
+        });
+    </script>
+</body>
+
+</html>
