@@ -442,6 +442,17 @@
             font-weight: bold;
         }
 
+        /* Layout lado a lado para duas tabelas */
+        .dual-tables {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .dual-tables .tracking-table {
+            flex: 1 1 320px;
+        }
+
         .negative-balance {
             background-color: #ffebee;
             color: #c62828;
@@ -564,6 +575,81 @@
 
         .name-cell:last-child {
             border-right: none;
+        }
+
+        /* ===== Layout Moderno (cards) para PAY ===== */
+        .modern-grid {
+            display: flex;
+            gap: 16px;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+        .panel {
+            flex: 1 1 360px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            border: 1px solid #e6e9ef;
+            overflow: hidden;
+        }
+        .panel-header {
+            padding: 12px 16px;
+            background: linear-gradient(180deg, #3f51b5 0%, #3949ab 100%);
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .panel-body {
+            padding: 12px 14px;
+        }
+        .metric-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 8px;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 8px;
+        }
+        .metric-item .metric-label {
+            color: #546e7a;
+            font-weight: 600;
+        }
+        .metric-item .metric-value {
+            color: #1a237e;
+            font-weight: 700;
+        }
+        .metric-item.balance.positive .metric-value { color: #2e7d32; }
+        .metric-item.balance.negative .metric-value { color: #c62828; }
+        .subpanels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .subpanel {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #e6e9ef;
+        }
+        .subpanel-title {
+            font-weight: 600;
+            color: #455a64;
+            margin-bottom: 8px;
+        }
+        .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .chip {
+            padding: 6px 10px;
+            border-radius: 16px;
+            background: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .chip.neg {
+            background: #ffebee;
+            color: #c62828;
         }
 
         .tooltip {
@@ -730,71 +816,55 @@
                     </div>
 
                     <div id="pay-sw32" class="tab-content active">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pay-sw32-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pay-sw32-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pay-sw32-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="pay-sw33" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pay-sw33-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pay-sw33-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pay-sw33-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="pay-sw34" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pay-sw34-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pay-sw34-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pay-sw34-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="pay-sw35" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pay-sw35-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pay-sw35-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pay-sw35-promdet"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -812,74 +882,58 @@
 
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="pcj-sw32" class="tab-content active">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pcj-sw32-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pcj-sw32-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pcj-sw32-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="pcj-sw33" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pcj-sw33-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pcj-sw33-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pcj-sw33-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="pcj-sw34" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pcj-sw34-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pcj-sw34-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pcj-sw34-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="pcj-sw35" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pcj-sw35-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="pcj-sw35-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="pcj-sw35-promdet"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -897,74 +951,58 @@
 
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="seguros-sw32" class="tab-content active">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="seguros-sw32-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="seguros-sw32-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="seguros-sw32-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="seguros-sw33" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="seguros-sw33-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="seguros-sw33-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="seguros-sw33-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="seguros-sw34" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="seguros-sw34-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="seguros-sw34-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="seguros-sw34-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="seguros-sw35" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="seguros-sw35-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="seguros-sw35-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="seguros-sw35-promdet"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -982,74 +1020,58 @@
 
                     <!-- Conteúdo da aba SW 32 -->
                     <div id="cpf-sw32" class="tab-content active">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cpf-sw32-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="cpf-sw32-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="cpf-sw32-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 33 -->
                     <div id="cpf-sw33" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cpf-sw33-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="cpf-sw33-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="cpf-sw33-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 34 -->
                     <div id="cpf-sw34" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cpf-sw34-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="cpf-sw34-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="cpf-sw34-promdet"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Conteúdo da aba SW 35 -->
                     <div id="cpf-sw35" class="tab-content">
-                        <table class="tracking-table">
-                            <thead>
-                                <tr>
-                                    <th>INDICADORES</th>
-                                    <th>META</th>
-                                    <th>REAL</th>
-                                    <th>DÉBITO/SALDO</th>
-                                    <th>POSIÇÃO/DISTRITO</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cpf-sw35-body">
-                                <!-- Dados serão preenchidos via JavaScript -->
-                            </tbody>
-                        </table>
+                        <div class="modern-grid">
+                            <div class="panel">
+                                <div class="panel-header">Volume</div>
+                                <div class="panel-body" id="cpf-sw35-volume"></div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">Promotores e Detratores</div>
+                                <div class="panel-body" id="cpf-sw35-promdet"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1199,189 +1221,240 @@
         // Função para popular dados de uma semana
         function populateWeekData(section, week) {
             const data = weeklyData[section][week];
-            const tbody = document.getElementById(`${section}-${week}-body`);
-
-            tbody.innerHTML = '';
 
             if (section === 'pay') {
-                // Volume
-                if (data.volume) {
-                    const balance = calculateBalance(data.volume.real, data.volume.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">VOLUME</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(3)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                // Preencher painel Volume
+                const volumeEl = document.getElementById(`${section}-${week}-volume`);
+                if (volumeEl) {
+                    volumeEl.innerHTML = '';
+                    if (data.volume) {
+                        const balance = calculateBalance(data.volume.real, data.volume.meta);
+                        const rows = [
+                            { label: 'Meta', value: (data.volume.meta ?? 0), cls: '' },
+                            { label: 'Real', value: (data.volume.real ?? 0), cls: '' },
+                            { label: 'Saldo/Débito', value: balance, cls: balance >= 0 ? 'positive' : 'negative' },
+                            { label: 'Posição Distrito', value: 0, cls: '' }
+                        ];
+                        rows.forEach(r => {
+                            const item = document.createElement('div');
+                            item.className = `metric-item ${r.label === 'Saldo/Débito' ? 'balance ' + r.cls : ''}`;
+                            item.innerHTML = `
+                                <span class="metric-label">${r.label}</span>
+                                <span class="metric-value">${typeof r.value === 'number' ? r.value : (r.value || 0)}</span>
+                            `;
+                            volumeEl.appendChild(item);
+                        });
+                    }
                 }
 
+                // Preencher painel Promotores/Detratores
+                const pdEl = document.getElementById(`${section}-${week}-promdet`);
+                if (pdEl) {
+                    pdEl.innerHTML = '';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'subpanels';
+                    const promPanel = document.createElement('div');
+                    promPanel.className = 'subpanel';
+                    promPanel.innerHTML = '<div class="subpanel-title">Promotores</div><div class="chip-list"></div>';
+                    const detPanel = document.createElement('div');
+                    detPanel.className = 'subpanel';
+                    detPanel.innerHTML = '<div class="subpanel-title">Detratores</div><div class="chip-list"></div>';
 
+                    const promList = promPanel.querySelector('.chip-list');
+                    const detList = detPanel.querySelector('.chip-list');
 
-                // Promotores
-                if (data.promotores) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">PROMOTORES</td>
-                        <td class="meta-column">NOME</td>
-                        <td class="name-cell"></td>
-                        <td class="name-cell"></td>
-                        <td class="name-cell"></td>
-                    `;
-                    tbody.appendChild(row);
-                }
+                    const promStr = data.promotores || '0';
+                    const detStr = data.detratores || '0';
+                    const toChips = (str, neg = false) => {
+                        const arr = String(str).split('/').map(s => s.trim()).filter(Boolean);
+                        if (arr.length === 0) arr.push('0');
+                        arr.forEach(text => {
+                            const chip = document.createElement('span');
+                            chip.className = 'chip' + (neg ? ' neg' : '');
+                            chip.textContent = text;
+                            (neg ? detList : promList).appendChild(chip);
+                        });
+                    };
+                    toChips(promStr, false);
+                    toChips(detStr, true);
 
-                // Detratores
-                if (data.detratores) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">DETRATORES</td>
-                        <td class="meta-column">NOME</td>
-                        <td class="name-cell negative-value"></td>
-                        <td class="name-cell negative-value"></td>
-                        <td class="name-cell negative-value"></td>
-                    `;
-                    tbody.appendChild(row);
+                    wrapper.appendChild(promPanel);
+                    wrapper.appendChild(detPanel);
+                    pdEl.appendChild(wrapper);
                 }
             } else if (section === 'pcj') {
-                // Volume %
-                if (data.volume) {
-                    const balance = calculateBalance(data.volume.real, data.volume.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">VOLUME %</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(1)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                // Painel Volume (usa dados de volume quando disponível; fallback para 0)
+                const volumeEl = document.getElementById(`${section}-${week}-volume`);
+                if (volumeEl) {
+                    volumeEl.innerHTML = '';
+                    const vol = data.volume || { meta: 0, real: 0 };
+                    const balance = calculateBalance(vol.real, vol.meta);
+                    const rows = [
+                        { label: 'Meta', value: (vol.meta ?? 0), cls: '' },
+                        { label: 'Real', value: (vol.real ?? 0), cls: '' },
+                        { label: 'Saldo/Débito', value: balance, cls: balance >= 0 ? 'positive' : 'negative' },
+                        { label: 'Posição Distrito', value: 0, cls: '' }
+                    ];
+                    rows.forEach(r => {
+                        const item = document.createElement('div');
+                        item.className = `metric-item ${r.label === 'Saldo/Débito' ? 'balance ' + r.cls : ''}`;
+                        item.innerHTML = `
+                            <span class="metric-label">${r.label}</span>
+                            <span class="metric-value">${typeof r.value === 'number' ? r.value : (r.value || 0)}</span>
+                        `;
+                        volumeEl.appendChild(item);
+                    });
                 }
 
-                // Conversão
-                if (data.conversao) {
-                    const balance = calculateBalance(data.conversao.real, data.conversao.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">CONVERSÃO</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(2)}"></td>
-                    `;
-                    tbody.appendChild(row);
-                }
+                // Painel Promotores/Detratores
+                const pdEl = document.getElementById(`${section}-${week}-promdet`);
+                if (pdEl) {
+                    pdEl.innerHTML = '';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'subpanels';
+                    const promPanel = document.createElement('div');
+                    promPanel.className = 'subpanel';
+                    promPanel.innerHTML = '<div class="subpanel-title">Promotores</div><div class="chip-list"></div>';
+                    const detPanel = document.createElement('div');
+                    detPanel.className = 'subpanel';
+                    detPanel.innerHTML = '<div class="subpanel-title">Detratores</div><div class="chip-list"></div>';
 
-                // Promotores
-                if (data.promotores) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">PROMOTORES</td>
-                        <td class="meta-column">NOME</td>
-                        <td class="name-cell"></td>
-                        <td class="name-cell"></td>
-                        <td class="name-cell"></td>
-                    `;
-                    tbody.appendChild(row);
-                }
+                    const promList = promPanel.querySelector('.chip-list');
+                    const detList = detPanel.querySelector('.chip-list');
+                    const promStr = data.promotores || '0';
+                    const detStr = data.detratores || '0';
+                    const toChips = (str, targetList, neg = false) => {
+                        const arr = String(str).split('/').map(s => s.trim()).filter(Boolean);
+                        if (arr.length === 0) arr.push('0');
+                        arr.forEach(text => {
+                            const chip = document.createElement('span');
+                            chip.className = 'chip' + (neg ? ' neg' : '');
+                            chip.textContent = text;
+                            targetList.appendChild(chip);
+                        });
+                    };
+                    toChips(promStr, promList, false);
+                    toChips(detStr, detList, true);
 
-                // Detratores
-                if (data.detratores) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">DETRATORES</td>
-                        <td class="meta-column">NOME</td>
-                        <td class="name-cell negative-value"></td>
-                        <td class="name-cell negative-value"></td>
-                        <td class="name-cell negative-value"></td>
-                    `;
-                    tbody.appendChild(row);
+                    wrapper.appendChild(promPanel);
+                    wrapper.appendChild(detPanel);
+                    pdEl.appendChild(wrapper);
                 }
             } else if (section === 'seguros') {
-                // Bolsa Protegida
-                if (data.bolsa) {
-                    const balance = calculateBalance(data.bolsa.real, data.bolsa.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">BOLSA PROTEGIDA</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(4)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                // Painel Volume (usa dados de volume quando disponível; fallback para 0)
+                const volumeEl = document.getElementById(`${section}-${week}-volume`);
+                if (volumeEl) {
+                    volumeEl.innerHTML = '';
+                    const vol = data.volume || { meta: 0, real: 0 };
+                    const balance = calculateBalance(vol.real, vol.meta);
+                    const rows = [
+                        { label: 'Meta', value: (vol.meta ?? 0), cls: '' },
+                        { label: 'Real', value: (vol.real ?? 0), cls: '' },
+                        { label: 'Saldo/Débito', value: balance, cls: balance >= 0 ? 'positive' : 'negative' },
+                        { label: 'Posição Distrito', value: 0, cls: '' }
+                    ];
+                    rows.forEach(r => {
+                        const item = document.createElement('div');
+                        item.className = `metric-item ${r.label === 'Saldo/Débito' ? 'balance ' + r.cls : ''}`;
+                        item.innerHTML = `
+                            <span class="metric-label">${r.label}</span>
+                            <span class="metric-value">${typeof r.value === 'number' ? r.value : (r.value || 0)}</span>
+                        `;
+                        volumeEl.appendChild(item);
+                    });
                 }
 
-                // Parcela Premiada
-                if (data.parcela) {
-                    const balance = calculateBalance(data.parcela.real, data.parcela.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">PARCELA PREMIADA</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(5)}"></td>
-                    `;
-                    tbody.appendChild(row);
-                }
+                // Painel Promotores/Detratores
+                const pdEl = document.getElementById(`${section}-${week}-promdet`);
+                if (pdEl) {
+                    pdEl.innerHTML = '';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'subpanels';
+                    const promPanel = document.createElement('div');
+                    promPanel.className = 'subpanel';
+                    promPanel.innerHTML = '<div class="subpanel-title">Promotores</div><div class="chip-list"></div>';
+                    const detPanel = document.createElement('div');
+                    detPanel.className = 'subpanel';
+                    detPanel.innerHTML = '<div class="subpanel-title">Detratores</div><div class="chip-list"></div>';
 
-                // Proteção Premiada
-                if (data.vida) {
-                    const balance = calculateBalance(data.vida.real, data.vida.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">PROTEÇÃO PREMIADA</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(6)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                    const promList = promPanel.querySelector('.chip-list');
+                    const detList = detPanel.querySelector('.chip-list');
+                    const promStr = data.promotores || '0';
+                    const detStr = data.detratores || '0';
+                    const toChips = (str, targetList, neg = false) => {
+                        const arr = String(str).split('/').map(s => s.trim()).filter(Boolean);
+                        if (arr.length === 0) arr.push('0');
+                        arr.forEach(text => {
+                            const chip = document.createElement('span');
+                            chip.className = 'chip' + (neg ? ' neg' : '');
+                            chip.textContent = text;
+                            targetList.appendChild(chip);
+                        });
+                    };
+                    toChips(promStr, promList, false);
+                    toChips(detStr, detList, true);
+
+                    wrapper.appendChild(promPanel);
+                    wrapper.appendChild(detPanel);
+                    pdEl.appendChild(wrapper);
                 }
             } else if (section === 'cpf') {
-                // CPF
-                if (data.cpf) {
-                    const balance = calculateBalance(data.cpf.real, data.cpf.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">CPF</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(8)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                // Painel Volume
+                const volumeEl = document.getElementById(`${section}-${week}-volume`);
+                if (volumeEl) {
+                    volumeEl.innerHTML = '';
+                    const vol = data.volume || { meta: 0, real: 0 };
+                    const balance = calculateBalance(vol.real, vol.meta);
+                    const rows = [
+                        { label: 'Meta', value: (vol.meta ?? 0), cls: '' },
+                        { label: 'Real', value: (vol.real ?? 0), cls: '' },
+                        { label: 'Saldo/Débito', value: balance, cls: balance >= 0 ? 'positive' : 'negative' },
+                        { label: 'Posição Distrito', value: 0, cls: '' }
+                    ];
+                    rows.forEach(r => {
+                        const item = document.createElement('div');
+                        item.className = `metric-item ${r.label === 'Saldo/Débito' ? 'balance ' + r.cls : ''}`;
+                        item.innerHTML = `
+                            <span class="metric-label">${r.label}</span>
+                            <span class="metric-value">${typeof r.value === 'number' ? r.value : (r.value || 0)}</span>
+                        `;
+                        volumeEl.appendChild(item);
+                    });
                 }
 
-                // PTC
-                if (data.ptc) {
-                    const balance = calculateBalance(data.ptc.real, data.ptc.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">PTC</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(9)}"></td>
-                    `;
-                    tbody.appendChild(row);
-                }
+                // Painel Promotores/Detratores
+                const pdEl = document.getElementById(`${section}-${week}-promdet`);
+                if (pdEl) {
+                    pdEl.innerHTML = '';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'subpanels';
+                    const promPanel = document.createElement('div');
+                    promPanel.className = 'subpanel';
+                    promPanel.innerHTML = '<div class="subpanel-title">Promotores</div><div class="chip-list"></div>';
+                    const detPanel = document.createElement('div');
+                    detPanel.className = 'subpanel';
+                    detPanel.innerHTML = '<div class="subpanel-title">Detratores</div><div class="chip-list"></div>';
 
-                // SNIPER
-                if (data.sniper) {
-                    const balance = calculateBalance(data.sniper.real, data.sniper.meta);
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="indicator-name">SNIPER</td>
-                        <td class="meta-column"></td>
-                        <td></td>
-                        <td class="${getBalanceClass(balance)}"></td>
-                        <td class="${getPositionClass(10)}"></td>
-                    `;
-                    tbody.appendChild(row);
+                    const promList = promPanel.querySelector('.chip-list');
+                    const detList = detPanel.querySelector('.chip-list');
+                    const promStr = data.promotores || '0';
+                    const detStr = data.detratores || '0';
+                    const toChips = (str, targetList, neg = false) => {
+                        const arr = String(str).split('/').map(s => s.trim()).filter(Boolean);
+                        if (arr.length === 0) arr.push('0');
+                        arr.forEach(text => {
+                            const chip = document.createElement('span');
+                            chip.className = 'chip' + (neg ? ' neg' : '');
+                            chip.textContent = text;
+                            targetList.appendChild(chip);
+                        });
+                    };
+                    toChips(promStr, promList, false);
+                    toChips(detStr, detList, true);
+
+                    wrapper.appendChild(promPanel);
+                    wrapper.appendChild(detPanel);
+                    pdEl.appendChild(wrapper);
                 }
             }
         }
