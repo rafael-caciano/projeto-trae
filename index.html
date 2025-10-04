@@ -12,8 +12,11 @@
 
 <body>
     <div class="container">
+        <div class="criancas-banner">
+            <h1 class="criancas-title">Mês das Crianças</h1>
+        </div>
         <div class="login-form">
-            <h1>Login</h1>
+            <h2 class="form-title">Login</h2>
             <form id="loginForm">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
@@ -136,6 +139,55 @@
         body {
             margin: 0;
             padding-bottom: 120px;
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+        .criancas-banner {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .criancas-title {
+            font-family: 'Bungee Spice', cursive;
+            font-size: 64px;
+            line-height: 1.1;
+            color: #FFFFFF; /* Branco */
+            -webkit-text-stroke: 3px #000000; /* Borda preta (webkit) */
+            text-shadow:
+                2px 2px 0 #000000,
+                -2px -2px 0 #000000,
+                2px -2px 0 #000000,
+                -2px 2px 0 #000000,
+                0 3px 6px rgba(0,0,0,0.25); /* leve sombra para destaque */
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .criancas-title {
+                font-size: 40px;
+                -webkit-text-stroke: 2px #000000;
+            }
+        }
+    </style>
+    <!-- Fundo responsivo da página Index -->
+    <style>
+        body {
+            background: url('arquivos/imagem-fundo-desenho.jpg') center / cover no-repeat fixed;
+        }
+    </style>
+    <!-- Fundo alternativo para telas maiores que 1000px -->
+    <style>
+        @media (min-width: 1000px) {
+            body {
+                background: url('arquivos/imagem-fundo-desenhoV.jpg') center / cover no-repeat fixed;
+            }
         }
     </style>
 </body>
